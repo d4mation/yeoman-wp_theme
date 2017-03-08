@@ -1,0 +1,12 @@
+@charset "utf-8";
+/*!
+ * Theme Name: <%- themeName %>
+<% if (themeURI !== '') { %> * Theme URI: <%- themeURI _%><%= "\n" %><% } -%>
+ * Description: <%- themeDescription %>
+<% if (parentTheme !== '') { %> * Template: <%- parentTheme _%><%= "\n" %><% } -%>
+ * Version: 0.1.0
+ * Text Domain: <%- textDomain %>
+<% if (author !== '') { %> * Author: <%- author _%><%= "\n" %><% } -%>
+<% if (authorURI !== '') { %> * Author URI: <%- authorURI _%><%= "\n" %><% } -%>
+<% if (contributors !== '') { %> * Contributors: <%- contributors _%><%= "\n" %><% } -%>
+ */
