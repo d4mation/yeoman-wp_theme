@@ -52,7 +52,7 @@ add_action( 'init', function () {
 	// Theme styles
 	wp_register_style(
 		'<%- textDomain -%>',
-		get_template_directory_uri() . '/style.css',
+		THEME_URL . '/style.css',
 		null,
 		defined( 'WP_DEBUG' ) && WP_DEBUG ? time() : THEME_VER
 	);
@@ -60,7 +60,7 @@ add_action( 'init', function () {
 	// Theme script
 	wp_register_script(
 		'<%- textDomain -%>',
-		get_template_directory_uri() . '/assets/js/script.js',
+		THEME_URL . '/assets/js/script.js',
 		array( 'jquery' ),
 		defined( 'WP_DEBUG' ) && WP_DEBUG ? time() : THEME_VER,
 		true
