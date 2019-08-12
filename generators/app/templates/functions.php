@@ -2,7 +2,7 @@
 /**
  * The theme's functions file that loads on EVERY page, used for uniform functionality.
  *
- * @since   1.0.0
+ * @since   {{VERSION}}
  * @package <%- pkgName %>
  */
 
@@ -43,7 +43,7 @@ $theme_fonts = array(
 /**
  * Register theme files.
  *
- * @since 1.0.0
+ * @since {{VERSION}}
  */
 add_action( 'init', function () {
 
@@ -80,7 +80,7 @@ add_action( 'init', function () {
 /**
  * Enqueue theme files.
  *
- * @since 1.0.0
+ * @since {{VERSION}}
  */
 add_action( 'wp_enqueue_scripts', function () {
 
@@ -104,7 +104,7 @@ add_action( 'wp_enqueue_scripts', function () {
 /**
  * Register nav menus.
  *
- * @since 1.0.0
+ * @since {{VERSION}}
  */
 add_action( 'after_setup_theme', function () {
 	register_nav_menu( 'primary', 'Primary Menu' );
@@ -113,7 +113,7 @@ add_action( 'after_setup_theme', function () {
 /**
  * Register sidebars.
  *
- * @since 1.0.0
+ * @since {{VERSION}}
  */
 add_action( 'widgets_init', function () {
     
@@ -129,7 +129,7 @@ add_action( 'widgets_init', function () {
 /**
  * Setup theme properties and stuff
  * 
- * @since 1.0.0
+ * @since {{VERSION}}
  * @return void
  */
 add_action( 'after_setup_theme', function () {

@@ -117,15 +117,8 @@ module.exports = class extends Generator {
 		);
 
 		this.fs.copy(
-			this.templatePath( './gulpfile.js' ),
-			this.destinationPath( './gulpfile.js' ), {
-
-			}
-		);
-
-		this.fs.copy(
-			this.templatePath( './gulp/**/*.*' ),
-			this.destinationPath( './gulp/' ), {
+			this.templatePath( './gulpfile.babel.js' ),
+			this.destinationPath( './gulpfile.babel.js' ), {
 
 			}
 		);
@@ -158,8 +151,8 @@ module.exports = class extends Generator {
 		);
 		
 		this.fs.copyTpl(
-			this.templatePath( './build/sass/main.scss' ),
-			this.destinationPath( './build/sass/main.scss' ), {
+			this.templatePath( './style.css' ),
+			this.destinationPath( './style.css' ), {
 				themeName: this.props.themeName,
 				themeURI: this.props.themeURI,
 				themeDescription: this.props.themeDescription,
@@ -174,14 +167,7 @@ module.exports = class extends Generator {
 		this.fs.copyTpl(
 			this.templatePath( './package.json' ),
 			this.destinationPath( './package.json' ), {
-				pkgName: this.props.pkgName,
-			}
-		);
-
-		this.fs.copyTpl(
-			this.templatePath( './bower.json' ),
-			this.destinationPath( './bower.json' ), {
-				pkgName: this.props.pkgName,
+				pkgNameLowerCase: this.props.pkgNameLowerCase,
 			}
 		);
 
@@ -230,21 +216,6 @@ module.exports = class extends Generator {
 				'\t'
 			);
 
-			var bowerJson = ejs.render(
-				this.fs.read( this.destinationPath( './bower.json' ) ),
-				{
-					gitHubURL: this.props.gitHubURL,
-				},
-				extend( 
-					{
-						filename: this.destinationPath( './bower.json' ),
-					},
-					{}
-				)
-			);
-
-			this.fs.write( this.destinationPath( './bower.json' ), bowerJson );
-
 		}
 
 	}
@@ -252,7 +223,6 @@ module.exports = class extends Generator {
 	done() {
 		
 		console.log( 'Done!' );
-		console.log( 'Run `npm install` and `gulp` in order to build the `style.css` file!' );
 		
 	}
 

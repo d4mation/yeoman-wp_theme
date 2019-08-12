@@ -3,7 +3,7 @@
  * Adds theme support for the theme.
  *
  * Feel free to remove any un-wanted support (most is already commented out)
- * @since   1.0.0
+ * @since   {{VERSION}}
  * @package <%- pkgName %>
  */
 
