@@ -1,0 +1,317 @@
+.learndash-wrapper {
+
+    .ld-item-list.ld-lesson-list {
+
+        .ld-item-list-item {
+
+            border: none;
+            
+            &:not(.ld-expandable) {
+
+                .ld-item-list-item-preview {
+
+                    // Allow titles to vertically align with icons when it is not expandable
+                    .ld-status-icon {
+                        margin-top: 0;
+                    }
+
+                }
+
+            }
+
+            .ld-item-list-item-preview {
+
+                border-radius: $global-radius;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+
+                z-index: 2;
+                position: relative;
+
+                background-color: $white;
+
+                border: solid $primary-color rem-calc( 2 );
+                border-left: solid $primary-color rem-calc( 4 );
+
+                // Change text colors
+                .ld-item-name {
+
+                    @include learndash-item-link;
+
+                }
+
+                .ld-item-details {
+
+                    .ld-expand-button {
+
+                        font-size: 1.5rem;
+                        line-height: 0.75;
+
+                        .ld-icon {
+                            
+                            background: transparent;
+                            line-height: 0.75;
+
+                            @include light-or-dark-link( $primary-color );
+    
+                        }
+
+                        .ld-text {
+                            @extend .screen-reader-text;
+                        }
+
+                    }
+
+                }
+
+            }
+
+            &.ld-expandable {
+
+                .ld-item-list-item-preview {
+
+                    .ld-item-details {
+
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: auto;
+
+                        background-color: $primary-color;
+                        border-top-right-radius: $global-radius;
+                        border-bottom-right-radius: $global-radius;
+
+                        padding-right: rem-calc( 25 );
+
+                    }
+
+                }
+
+            }
+
+            &.ld-expanded {
+
+                .ld-item-list-item-expanded {
+
+                    border: rem-calc( 2 ) #E6E6E6 solid;
+                    background: $primary-color;
+                    margin-bottom: rem-calc( 12 ); // 12px is LD default
+
+                }
+
+                .ld-table-list-footer {
+                    display: none;
+                }
+
+                .ld-table-list {
+
+                    .ld-table-list-item {
+                        border: none;
+                    }
+
+                }
+
+            }
+
+            .ld-item-list-item-expanded {
+
+                z-index: 1;
+
+                background-color: $white;
+                @include light-or-dark-text( $white );
+                border-radius: 0 0 rem-calc( $global-radius ) rem-calc( $global-radius );
+
+                margin-top: rem-calc( - $global-radius );
+                margin-bottom: rem-calc( $global-radius ) + rem-calc( 12 ); // 12px is LD default
+
+                &:before {
+                    display: none;
+                }
+
+                .ld-table-list-header {
+
+                    padding-top: rem-calc( 20 ) + rem-calc( $global-radius );
+                    padding-bottom: rem-calc( 10 );
+                    padding-right: rem-calc( 54 );
+                    padding-left: rem-calc( 54 );
+                    
+                    background-color: $primary-color;
+                    @include light-or-dark-text( $primary-color );
+
+                    .ld-item-icon {
+
+                        font-size: rem-calc( 14 );
+                        margin-left: rem-calc( -7 );
+                        margin-right: rem-calc( 7 );
+                        text-align: center;
+                        width: rem-calc( 26 );
+
+                    }
+
+                }
+
+                .ld-table-list-items {
+
+                    padding: 0 rem-calc( 54 );
+
+                }
+
+                .ld-table-list-item-preview {
+
+                    @include learndash-item-link;
+
+                    padding-top: 0;
+                    padding-bottom: rem-calc( 10 );
+                    margin-left: rem-calc( -7 );
+
+                    .ld-status-icon {
+                        height: auto;
+                    }
+
+                }
+
+                .ld-table-list-item {
+
+                    margin: 0;
+
+                    &:last-child {
+
+                        .ld-table-list-item-preview {
+                            padding-bottom: rem-calc( 20 );
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        .ld-section-heading {
+
+            @include xy-grid;
+
+            .callout, .kmcu-course-overview {
+                @include xy-cell( $size: 12, $gutter-type: none );
+            }
+
+            & > h2, .kmcu-course-overview h2 {
+
+                @extend .h2;
+
+            }
+
+            .ld-item-list-actions {
+
+                .ld-expand-button {
+
+                    font-size: 1.5rem;
+                    line-height: 0.75;
+                    padding-right: 0;
+
+                    background: transparent;
+
+                    .ld-icon {
+                        @include light-or-dark-link( $white, $primary-color );
+                        background: transparent;
+                        order: 2;
+                    }
+
+                    .ld-text {
+
+                        text-transform: uppercase;
+                        letter-spacing: rem-calc( 1 );
+                        font-size: rem-calc( 12 );
+                        font-weight: 300;
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    .kmcu-course-overview {
+
+        .add_to_cart_button, .added_to_cart {
+            margin-right: rem-calc( 8 );
+        }
+
+        .price {
+
+            font-weight: $global-weight-bold;
+            font-size: rem-calc( 18 );
+            color: #1A1A1A;
+            line-height: rem-calc( 22 );
+            
+        }
+
+    }
+
+}
+
+body:not( .kmcu-can-access-course-content ) {
+
+    .learndash-wrapper {
+
+        .ld-item-list.ld-lesson-list {
+
+            .ld-item-list-item {
+    
+                .ld-item-list-item-preview {
+    
+                    .ld-item-name {
+                        
+                        &, &:hover, &:focus {
+                            color: #707070;
+                        }
+
+                    }
+
+                }
+
+                .ld-item-list-item-expanded {
+    
+                    .ld-table-list-item-preview {
+
+                        &, &:hover, &:focus {
+                            color: #707070;
+                        }
+
+                        .ld-status-icon {
+
+                            &, &:before {
+    
+                                color: #707070;
+    
+                            }
+    
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+.single-sfwd-courses {
+
+    .course-library-cta {
+
+        // element above already has 12
+        margin-top: rem-calc( 58 );
+
+    }
+
+}

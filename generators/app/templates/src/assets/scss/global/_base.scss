@@ -1,0 +1,11 @@
+html, body {
+    overflow-x: hidden;
+}
+
+input[type="text"] {
+
+    &::placeholder {
+        color: #1A1A1A;
+    }
+
+}

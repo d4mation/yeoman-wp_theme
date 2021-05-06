@@ -1,0 +1,66 @@
+.woocommerce-cart {
+
+    table.cart {
+        
+        td.actions {
+            
+            .coupon {
+
+                text-align: left;
+
+                label[for="coupon_code"] {
+                    display: block;
+                    text-align: left;
+                    text-transform: uppercase;
+                    font-weight: $global-weight-bold;
+                    color: $primary-color;
+                }
+
+                .input-text {
+
+                    width: rem-calc( 255 );
+
+                    @include breakpoint( medium down ) {
+                        max-width: 50%;
+                    }
+
+                }
+
+                .button[name="apply_coupon"] {
+
+                    margin-bottom: 0;
+                    float: none;
+        
+                }
+
+            }
+
+            button[name="update_cart"] {
+
+                margin-bottom: 0;
+
+                @include breakpoint( large ) {
+                    margin-top: $form-label-line-height;
+                }
+
+            }
+
+            p.description {
+                font-size: rem-calc( 13 );
+                margin-bottom: 0;
+                line-height: $global-lineheight + 1;
+            }
+
+        }
+
+    }
+
+    .cart-collaterals .cart_totals {
+        width: 100%;
+    }
+
+    a.checkout-button {
+        @include button-expand;
+    }
+
+}

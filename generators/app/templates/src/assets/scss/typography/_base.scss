@@ -1,0 +1,27 @@
+@each $size, $headers in $header-styles {
+
+    @include breakpoint( $size ) {
+
+        @each $header, $header-rules-global in $headers {
+
+            // These Properties are handled by Foundation, but any others are not
+            $header-rules: map-remove( $header-rules-global, 'font-size', 'line-height', 'margin-top', 'margin-bottom' );
+
+            #{$header}, .#{$header} {
+
+                @each $property, $value in $header-rules {
+
+                    #{$property}: #{$value};
+
+                }
+
+            }
+
+        }
+
+    }
+}
+
+.subheader {
+    font-weight: $global-weight-bold;
+}

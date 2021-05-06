@@ -1,0 +1,64 @@
+.facetwp-type-fselect {
+
+    .fs-wrap {
+
+        position: relative;
+
+        @if has-value($input-transition) {
+            transition: $input-transition;
+        }
+
+        border-radius: $input-radius;
+
+        // Copied from form-element();
+        &:focus {
+
+            outline: none;
+            border: $input-border-focus;
+            background-color: $input-background-focus;
+            box-shadow: $input-shadow-focus;
+
+            @if has-value($input-transition) {
+                transition: $input-transition;
+            }
+        }
+
+    }
+
+    .fs-wrap, .fs-dropdown {
+        width: 100% !important;
+    }
+    
+    .fs-dropdown {
+        margin-top: 0;
+        border-radius: $input-radius;
+        background: $input-background;
+    }
+
+    .fs-label-wrap {
+
+        @include form-element();
+        margin-bottom: 0;
+
+        .fs-label {
+            line-height: $input-line-height / 2;
+        }
+
+        // Disable this styling as this element doesn't actually gain focus
+        &:focus {
+            border: none;
+            background-color: transparent;
+            box-shadow: none;
+        }
+
+    }
+
+    .fs-search {
+
+        input {
+            margin-bottom: 0;
+        }
+
+    }
+
+}

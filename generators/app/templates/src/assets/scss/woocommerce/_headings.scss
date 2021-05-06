@@ -1,0 +1,11 @@
+.woocommerce {
+
+    form.checkout {
+
+        h3 {
+            @extend .h2;
+        }
+
+    }
+
+}

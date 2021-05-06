@@ -1,0 +1,93 @@
+.orbit {
+
+    .orbit-controls {
+
+        font-size: rem-calc( 42 );
+
+        @include breakpoint( small only ) {
+            display: none !important;
+        }
+
+        button {
+
+            color: $primary-color;
+
+            &:hover, &:focus {
+                cursor: pointer;
+                color: smart-scale( $primary-color, 14% );
+            }
+
+        }
+
+    }
+
+    .orbit-container {
+
+        max-width: 100%;
+
+        @include breakpoint( medium ) {
+
+            // 1rem was the original font-size of the controls
+            // While we have changed it above, it seems to still work well so lets leave it
+            max-width: calc( 100% - #{ ( $orbit-control-padding * 4 ) + rem-calc( 42 * 2 ) } );
+            margin: 0 auto;
+
+        }
+
+        blockquote {
+
+            padding: 0;
+            border: none;
+
+        }
+
+        blockquote, blockquote p {
+            font-size: rem-calc( 20 );
+            font-weight: $global-weight-bold;
+        }
+
+        blockquote cite {
+
+            font-size: rem-calc( 14 );
+
+        }
+
+        &, blockquote, blockquote p, blockquote cite {
+
+            @include light-or-dark-text( $content-background );
+
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+    }
+
+    .orbit-bullets {
+
+        button {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .is-active {
+            width: rem-calc( 24 );
+            border-radius: rem-calc( 5 );
+        }
+
+    }
+
+    @include breakpoint( medium ) {
+
+        .orbit-controls, .orbit-container {
+
+            display: flex;
+            align-items: center;
+
+        }
+
+    }
+
+}

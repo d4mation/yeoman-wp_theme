@@ -1,0 +1,300 @@
+footer.site-footer {
+
+  background-color: $footer-background;
+
+  @include breakpoint( small only ) {
+    &, * {
+      text-align: center;
+    }
+  }
+
+  .footer-top {
+
+    padding: rem-calc( 90 ) 0;
+
+  }
+
+  .footer-bottom {
+    padding: rem-calc( 30 ) 0;
+  }
+
+  .footer-top {
+
+    background-color: $primary-color;
+    @include light-or-dark-text( $primary-color );
+
+    a, &:visited {
+      @include light-or-dark-link( $primary-color );
+    }
+
+  }
+
+  .footer-bottom {
+
+    font-size: rem-calc( 14 );
+
+    background-color: $footer-background;
+    @include light-or-dark-text( $footer-background );
+
+    a, &:visited {
+      @include light-or-dark-link( $footer-background );
+    }
+
+  }
+
+  @include breakpoint( medium ) {
+    min-height: rem-calc( 90 );
+  }
+
+  .grid-container {
+
+    $padding: $grid-container-padding;
+
+    @each $size, $value in $padding {
+      $padding: map-merge( $padding, ( $size: ( $value ) * 2 ) );
+    }
+
+    @include xy-gutters( $gutters: $padding, $gutter-type: padding );
+
+  }
+
+  .footer-nav-container {
+
+    .menu {
+
+      display: inline;
+
+      & > li {
+        display: inline-block;
+      }
+
+    }
+
+    .menu {
+
+      .is-active > a {
+        background: transparent;
+      }
+
+      li:not(.button) {
+        a {
+
+          color: $body-font-color;
+
+          &:hover, &:focus {
+            color: $primary-color;
+          }
+
+        }
+      }
+
+      & > li {
+
+        $padding: nth( str-split( inspect( $global-menu-padding ), ' ' ), 2 );
+        margin-right: $padding;
+
+        & > a {
+
+          display: inline-block;
+          padding-left: 0;
+          padding-right: 0;
+  
+        }
+
+        &:after {
+          margin-left: $padding;
+          content: "\2022";
+        }
+
+        & > a {
+
+          display: inline-block;
+          padding-left: 0;
+          padding-right: 0;
+          
+        }
+
+      }
+
+    }
+
+  }
+
+  .footer-nav-container, .copyright-container {
+    display: inline-block;
+  }
+
+  .social-media-cell {
+
+    @include breakpoint( small only ) {
+
+      .menu {
+
+        display: inline;
+
+        & > li {
+          display: inline-block;
+        }
+
+      }
+
+    }
+
+    .menu {
+
+      li {
+
+        a {
+
+          @include light-or-dark-link( $footer-background, get-color( primary ) );
+          font-weight: $global-weight-bold;
+          text-transform: uppercase;
+
+
+        }
+
+      }
+
+      & > li {
+
+        @include light-or-dark-text( $footer-background, get-color( primary ) );
+
+        $padding: nth( str-split( inspect( $global-menu-padding ), ' ' ), 2 );
+        margin-right: $padding;
+
+        &:after {
+          margin-left: $padding;
+          content: "\2022";
+        }
+
+        &:last-of-type {
+
+          margin-right: 0;
+
+          &:after {
+            margin-left: 0;
+            content: '';
+          }
+
+        }
+
+        & > a {
+
+          display: inline-block;
+          padding-left: 0;
+          padding-right: 0;
+          letter-spacing: rem-calc( 2 );
+          
+        }
+
+      }
+
+    }
+
+  }
+
+  .footer-logo {
+
+    position: relative;
+
+    a {
+
+      @include breakpoint( small only ) {
+
+        position: absolute;
+
+        top: rem-calc( -60 );
+        right: 0;
+        bottom: auto;
+        left: 0;
+
+      }
+
+      svg {
+
+        height: rem-calc( 75 );
+
+        @include breakpoint( medium ) {
+          height: rem-calc( 88 );
+        }
+
+        @include breakpoint( xlarge ) {
+          height: rem-calc( 130 );
+        }
+
+        width: auto;
+
+      }
+
+    }
+
+  }
+
+  .footer-bottom .grid-x {
+
+    @include flex;
+    @include flex-align( $y: middle );
+
+  }
+
+  .footer-top {
+
+    .footer-site-meta {
+
+      @include breakpoint( small only ) {
+
+        margin-top: rem-calc( 25 );
+        margin-bottom: rem-calc( 20 );
+
+      }
+
+      p {
+        margin-bottom: 0;
+      }
+
+      h4 {
+        color: $primary-color;
+        font-weight: $global-weight-bold;
+      }
+
+      a {
+
+        @include light-or-dark-link( $primary-color, $body-font-color );
+        text-decoration: none;
+        &:hover, &:focus {
+          text-decoration: none;
+        }
+
+      }
+
+    }
+
+    .footer-top-nav {
+
+      .menu {
+
+        li:not(.button) {
+
+          a {
+            font-weight: $global-weight-bold;
+          }
+
+          a:not(.login):not(.account) {
+
+            color: $body-font-color;
+
+            &:hover, &:focus {
+              color: $primary-color;
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}

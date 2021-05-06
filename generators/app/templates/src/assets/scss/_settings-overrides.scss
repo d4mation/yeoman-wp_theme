@@ -1,0 +1,162 @@
+// Adjust Palette
+$foundation-palette: (
+  primary: #258837,
+  secondary: #286CAD,
+  success: #3adb76,
+  warning: #ffae00,
+  alert: #cc4b37,
+  white: $white,
+);
+
+// Make palette variable names available
+// This will not work for any custom color names
+@include add-foundation-colors;
+
+// These global settings are dependent of what was previously defined. This will override them to what we want
+$button-palette: $foundation-palette;
+
+// Some buttons gives warnings due to the default colors used by the button mixin, but we are not actually using those colors on the site
+$contrast-warnings: false;
+
+// These were all originally $primary-color
+$anchor-color: #1A3180;
+$anchor-color-hover: $secondary-color;
+
+$accordion-item-color: $secondary-color;
+
+$badge-background: $secondary-color;
+
+$breadcrumbs-item-color: $secondary-color;
+
+$button-background: $secondary-color;
+
+$drilldown-arrow-color: $secondary-color;
+
+$label-background: $secondary-color;
+
+$pagination-item-background-current: $secondary-color;
+
+$progress-meter-background: $secondary-color;
+
+$prototype-separator-background: $secondary-color;
+
+$slider-handle-background: $secondary-color;
+
+$switch-background-active: $secondary-color;
+
+$tab-color: $secondary-color;
+
+$thumbnail-shadow-hover: 0 0 6px 1px rgba($secondary-color, 0.5);
+
+$dropdownmenu-arrow-color: $body-font-color;
+
+// Now we need to do the same with $global-radius
+
+$global-radius: rem-calc( 8 );
+
+$keystroke-radius: $global-radius;
+$button-radius: rem-calc( 22 );
+$callout-radius: $global-radius;
+$card-border-radius: $global-radius;
+$dropdown-radius: $global-radius;
+$select-radius: $global-radius;
+$input-radius: $global-radius;
+$form-button-radius: $global-radius;
+$label-radius: $global-radius;
+$meter-radius: $global-radius;
+$pagination-radius: $global-radius;
+$progress-radius: $global-radius;
+$reveal-radius: $global-radius;
+$slider-radius: $global-radius;
+$switch-radius: $global-radius;
+$switch-paddle-radius: $global-radius;
+$thumbnail-radius: $global-radius;
+$tooltip-radius: $global-radius;
+
+// Similarly, to change the Global Width we have to adjust a bunch of other previously calculated values
+
+$global-width: rem-calc( 1110 );
+$grid-row-width: $global-width;
+$hr-width: $global-width;
+$reveal-max-width: $global-width;
+$grid-container: $global-width;
+$grid-container-max: $global-width;
+
+$dark-gray: #262626;
+$blockquote-color: $dark-gray;
+$cite-color: $dark-gray;
+$subheader-color: $dark-gray;
+$closebutton-color: $dark-gray;
+$select-triangle-color: $dark-gray;
+$input-border-focus: 1px solid $dark-gray;
+$orbit-bullet-background-active: $dark-gray;
+$has-tip-border-bottom: dotted 1px $dark-gray;
+
+// Actual customizations below
+
+$body-background: $primary-color;
+$topbar-background: rgba( 0, 0, 0, 0 );
+$topbar-submenu-background: $white;
+$offcanvas-background: $white;
+
+$content-background: $white;
+$header-background: $white;
+$footer-background: $white;
+
+$body-font-color: $dark-gray;
+$global-weight-normal: 400; // Regular
+$global-weight-bold: 600; // Bold
+
+$header-font-family: $body-font-family;
+$header-font-weight: $global-weight-bold;
+
+$header-styles: (
+  small: (
+    'h1': (
+      'font-size': 28,
+      'color': $primary-color,
+    ),
+    'h2': (
+      'font-size': 28,
+      'color': $primary-color,
+    ),
+    'h3': (
+      'font-size': 24,
+    ),
+    'h4': (
+      'font-size': 24,
+      'font-weight': $global-weight-normal,
+    ),
+    'h5': (
+      'font-size': 20,
+      'font-weight': $global-weight-normal,
+    ),
+    'h6': (
+      'font-size': 14,
+      'font-weight': $global-weight-normal,
+    ),
+  ),
+  medium: (
+    'h1': (
+      'font-size': 54,
+    ),
+    'h2': (
+      'font-size': 36,
+    ),
+    'h3': (
+      'font-size': 28,
+    ),
+    'h4': (
+      'font-size': 24,
+    ),
+    'h5': (
+      'font-size': 24,
+    ),
+    'h6': (
+      'font-size': 17,
+    ),
+  ),
+);
+
+$anchor-text-decoration: none;
+$anchor-text-decoration-hover: underline;

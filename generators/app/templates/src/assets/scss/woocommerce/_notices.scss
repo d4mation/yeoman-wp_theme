@@ -1,0 +1,86 @@
+.woocommerce {
+    .main-container {    
+
+        .woocommerce-info {
+
+            @include callout( $primary-color );
+
+            &:before {
+
+                color: color-pick-contrast( $primary-color, ( $secondary-color, $white ) );
+
+            }
+
+            a:not( .button ) {
+                @include light-or-dark-link( $primary-color );
+            }
+
+        }
+
+        .woocommerce-error {
+
+            @include callout( $alert-color );
+
+            &:before {
+
+                color: color-pick-contrast( $alert-color, ( $secondary-color, $white ) );
+
+            }
+
+            a:not( .button ) {
+                @include light-or-dark-link( $alert-color );
+            }
+
+        }
+
+        .woocommerce-message {
+
+            @include callout( $primary-color );
+
+            &:before {
+
+                color: color-pick-contrast( $primary-color, ( $primary-color, $white  ) );
+
+            }
+
+            a:not( .button ) {
+                @include light-or-dark-link( $primary-color );
+            }
+
+            a.button {
+                @extend .button.primary;
+            }
+
+        }
+
+        .woocommerce-info, .woocommerce-error, .woocommerce-message {
+
+            // Icon will be broken otherwise
+            padding-left: 3.5em;
+        
+            border: none;
+
+            @include flex;
+            @include flex-align( left, middle );
+        
+            a.button {
+
+                margin-bottom: 0;
+                order: 2;
+                margin-left: auto;
+
+                @include breakpoint( small only ) {
+                    width: 100%;
+                }
+
+            }
+
+            &:before {
+                top: 50%;
+                transform: translateY( -50% );
+            }
+        
+        }
+
+    }
+}

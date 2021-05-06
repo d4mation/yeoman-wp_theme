@@ -1,0 +1,22 @@
+.tabs {
+
+    li:not(.is-active) {
+
+        background-color: $primary-color;
+        @include light-or-dark-text( $primary-color );
+
+        a {
+            @include light-or-dark-link( $primary-color );
+        }
+
+    }
+
+    border: none !important;
+
+    & + .tabs-content {
+
+        border: rem-calc( 1 ) solid $tab-content-border;
+
+    }
+
+}

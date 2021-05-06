@@ -7,7 +7,6 @@ import gulp          from 'gulp';
 import rimraf        from 'rimraf';
 import yaml          from 'js-yaml';
 import fs            from 'fs';
-import dateFormat    from 'dateformat';
 import webpackStream from 'webpack-stream';
 import webpack2      from 'webpack';
 import named         from 'vinyl-named';
@@ -75,46 +74,46 @@ function clean(done) {
 // This task skips over the "img", "js", and "scss" folders, which are parsed separately
 function copy() {
   return gulp.src(PATHS.assets)
-    .pipe(gulp.dest(PATHS.dist + '/assets'));
+    .pipe(gulp.dest(PATHS.dist));
 }
 
 // Compile Sass into CSS
 // In production, the CSS is compressed
 function sass() {
 
-	return gulp.src( PATHS.entries.scss, { allowEmpty: true } )
-		.pipe( named() )
-		.pipe( $.sourcemaps.init() )
-		.pipe(
-			$.sass( {
-				includePaths: PATHS.sass,
-				outputStyle: 'compressed'
-			} )
-			.on( 'error', $.sass.logError )
-		)
-		.pipe(
-			$.autoprefixer( {
-				browsers: COMPATIBILITY
-			} )
-		)
-		.pipe(
-			$.if( PRODUCTION, $.cleanCss( { compatibility: 'ie9' } ) )
-		)
-		.pipe(
-			$.if( ! PRODUCTION, $.sourcemaps.write() )
-		)
-		.pipe(
-			$.if( REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev() )
-		)
-		.pipe(
-			gulp.dest( PATHS.dist + '/assets/css' )
-		)
-		.pipe(
-			$.if( REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev.manifest() )
-		)
-		.pipe(
-			gulp.dest( PATHS.dist + '/assets/css' )
-		);
+  return gulp.src( PATHS.entries.scss, { allowEmpty: true } )
+    .pipe( named() )
+    .pipe( $.sourcemaps.init() )
+    .pipe(
+      $.sass( {
+        includePaths: PATHS.sass,
+        outputStyle: 'compressed'
+      } )
+      .on( 'error', $.sass.logError )
+    )
+    .pipe(
+      $.autoprefixer( {
+        browsers: COMPATIBILITY
+      } )
+    )
+    .pipe(
+      $.if( PRODUCTION, $.cleanCss( { compatibility: 'ie9' } ) )
+    )
+    .pipe(
+      $.sourcemaps.write( '.' )
+    )
+    .pipe(
+      $.if( REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev() )
+    )
+    .pipe(
+      gulp.dest( PATHS.dist + '/css' )
+    )
+    .pipe(
+      $.if( REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev.manifest() )
+    )
+    .pipe(
+      gulp.dest( PATHS.dist + '/css' )
+    );
 
 }
 
@@ -145,14 +144,26 @@ const webpack = {
   },
 
   build() {
+
+    var bulidConfig = Object.assign(webpack.config, {
+    });
+
+    if ( ! PRODUCTION ) {
+      bulidConfig.devtool = 'inline-source-map';
+    }
+
     return gulp.src(PATHS.entries.js, { allowEmpty: true } )
       .pipe(named())
-      .pipe(webpackStream(webpack.config, webpack2))
+      .pipe(webpackStream(bulidConfig, webpack2))
+      .pipe( $.sourcemaps.init( { loadMaps: true } ) )
       .pipe($.uglify())
+      .pipe(
+        $.sourcemaps.write( '.' )
+      )
       .pipe($.if(REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev()))
-      .pipe(gulp.dest(PATHS.dist + '/assets/js'))
+      .pipe(gulp.dest(PATHS.dist + '/js'))
       .pipe($.if(REVISIONING && PRODUCTION || REVISIONING && DEV, $.rev.manifest()))
-      .pipe(gulp.dest(PATHS.dist + '/assets/js'));
+      .pipe(gulp.dest(PATHS.dist + '/js'));
   },
 
   watch() {
@@ -170,7 +181,7 @@ const webpack = {
           }));
         }),
       )
-      .pipe(gulp.dest(PATHS.dist + '/assets/js'));
+      .pipe(gulp.dest(PATHS.dist + '/js'));
   },
 };
 
@@ -179,13 +190,13 @@ gulp.task('webpack:watch', webpack.watch);
 
 function tinymce() {
 
-	return gulp.src( "src/assets/js/admin/tinymce/**/*.js" )
-		.pipe( $.foreach( function( stream, file ) {
-			return stream
-				.pipe( $.babel() )
-				.pipe( $.uglify() )
-				.pipe( gulp.dest( PATHS.dist + '/assets/js/tinymce' ) )
-		} ) );
+  return gulp.src( "src/assets/js/admin/tinymce/**/*.js" )
+    .pipe( $.foreach( function( stream, file ) {
+      return stream
+        .pipe( $.babel() )
+        .pipe( $.uglify() )
+        .pipe( gulp.dest( PATHS.dist + '/js/tinymce' ) )
+    } ) );
 
 }
 
@@ -196,7 +207,7 @@ function images() {
     .pipe($.if(PRODUCTION, $.imagemin({
       progressive: true
     })))
-    .pipe(gulp.dest(PATHS.dist + '/assets/img'));
+    .pipe(gulp.dest(PATHS.dist + '/img'));
 }
 
 // Start BrowserSync to preview the site in
@@ -236,42 +247,47 @@ gulp.task('default',
   gulp.series('build', watch));
 
 function version() {
-	
+  
     return gulp.src([
-        'admin/**/*',
-        'assets/src/**/*',
-        'core/**/*',
-        '!core/library/**/*',
-        'languages/**/*',
-        'templates/**/*',
-        'style.css',
-        'readme.txt'
+      'admin/**/*',
+      'src/assets/**/*',
+      'core/**/*',
+      '!core/**/library/**/*',
+      'vendor/**/*',
+      'page-templates/**/*',
+      'template-parts/**/*',
+      '*.php', // Anything at Root should be us
+      'style.css',
+      'readme.txt'
     ], { base: './', allowEmpty: true } )
-		// Doc block versions, only update on non-Betas and 1.0.0+ releases
-        .pipe( $.if( ( pkg.version.indexOf( 'b' ) == -1 && compareVersions( pkg.version, '1.0.0' ) !== -1 ), $.replace( /\{\{VERSION}}/g, pkg.version ) ) )
-        // Plugin header
-        .pipe($.replace(/(\* Version: ).*/, "$1" + pkg.version))
-        // readme.txt
-		.pipe( $.replace( /(Stable tag: ).*/, function( match, captureGroup, offset, file ) {
-			return captureGroup + pkg.version; // This really shouldn't be necessary, but it wouldn't work otherwise
-		} ) )
-        .pipe(gulp.dest('./'));
+    // Doc block versions, only update on non-Betas and 1.0.0+ releases
+    .pipe( $.if( ( pkg.version.indexOf( 'b' ) == -1 && compareVersions( pkg.version, '1.0.0' ) !== -1 ), $.replace( /\{\{VERSION}}/g, pkg.version ) ) )
+    // Theme header
+    .pipe($.replace(/(\* Version: ).*/, "$1" + pkg.version))
+    // readme.txt
+    .pipe( $.replace( /(Stable tag: ).*/, function( match, captureGroup, offset, file ) {
+      return captureGroup + pkg.version; // This really shouldn't be necessary, but it wouldn't work otherwise
+    } ) )
+    .pipe(gulp.dest('./'));
+    
 }
 
+gulp.task( 'version', version );
+
 function setProd( done ) {
-	
-	PRODUCTION = true;
-	
-	done();
-	
+  
+  PRODUCTION = true;
+  
+  done();
+  
 }
 
 function removeProd( done ) {
-	
-	PRODUCTION = false;
-	
-	done();
-	
+  
+  PRODUCTION = false;
+  
+  done();
+  
 }
 
 function generate_pot() {
@@ -285,56 +301,58 @@ function generate_pot() {
 }
 
 require( 'gulp-grunt' )( gulp, {
-	prefix: 'release:grunt-',
+  prefix: 'release:grunt-',
 } ); // add all the gruntfile tasks to gulp
 
 // Copy relevant files to another directory
 function releaseCopy() {
 
-  return gulp.src([
-		'!.git/**/*',
-        'admin/**/*',
-        'dist/assets/**/*',
-        'core/**/*',
-        'core/library/**/*',
-		'!core/library/rbp-support/{build,build/**}',
-		'!core/library/rbp-support/{gulp,gulp/**}',
-		'!core/library/rbp-support/{node_modules,node_modules/**}',
-		'!core/library/rbp-support/**/*.zip',
-		'!core/library/rbm-field-helpers/{bin,bin/**}',
-		'!core/library/rbm-field-helpers/{node_modules,node_modules/**}',
-		'!core/library/rbm-field-helpers/**/*.zip',
-        'languages/**/*',
-        'templates/**/*',
-        textDomain + '.php',
-        'readme.txt',
-		'!./**/package.json',
-		'!./**/package-lock.json',
-		'!./**/config.yml',
-		'!./**/webpack.config.js',
-		'!./**/gulpfile.js',
-		'!./**/gulpfile.babel.js',
-		'!./**/gruntfile.js',
-		'!./**/README.md'
+  return gulp.src( [
+    '!.git/**/*',
+    'admin/**/*',
+    'assets/dist/**/*',
+    'core/**/*',
+    'core/library/**/*',
+    '!core/library/rbp-support/{build,build/**}',
+    '!core/library/rbp-support/{gulp,gulp/**}',
+    '!core/library/rbp-support/{node_modules,node_modules/**}',
+    '!core/library/rbp-support/**/*.zip',
+    '!core/library/rbm-field-helpers/{bin,bin/**}',
+    '!core/library/rbm-field-helpers/{node_modules,node_modules/**}',
+    '!core/library/rbm-field-helpers/**/*.zip',
+    'languages/**/*',
+    'page-templates/**/*',
+    'template-parts/**/*',
+    '*.php', // Anything at Root should be us
+    'style.css',
+    'readme.txt',
+    '!./**/package.json',
+    '!./**/package-lock.json',
+    '!./**/config.yml',
+    '!./**/webpack.config.js',
+    '!./**/gulpfile.js',
+    '!./**/gulpfile.babel.js',
+    '!./**/gruntfile.js',
+    '!./**/README.md'
     ], { base: './', allowEmpty: true } )
     .pipe(gulp.dest( textDomain ));
 }
 
 function releaseCleanup() {
-	
-	return gulp.src( './' + textDomain, { read: false } )
-		.pipe( $.clean() )
-	
+  
+  return gulp.src( './' + textDomain, { read: false } )
+    .pipe( $.clean() )
+  
 }
 
 function rename( done ) {
-	
-	fs.renameSync( './packaged/' + textDomain + '.zip', './packaged/' + textDomain + '-' + pkg.version + '.zip' );
-	
-	done();
-	
+  
+  fs.renameSync( './packaged/' + textDomain + '.zip', './packaged/' + textDomain + '-' + pkg.version + '.zip' );
+  
+  done();
+  
 }
 
 // Package task
 gulp.task('package',
-  gulp.series(setProd, version, 'build', generate_pot, releaseCopy, 'release:grunt-compress', rename, releaseCleanup, removeProd, 'build'));
+  gulp.series(setProd, 'version', 'build', generate_pot, releaseCopy, 'release:grunt-compress', rename, releaseCleanup, removeProd, 'build'));

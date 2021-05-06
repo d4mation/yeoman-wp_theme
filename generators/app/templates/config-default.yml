@@ -1,7 +1,7 @@
 # Browsersync config
 BROWSERSYNC:
   # URL of local development server goes here (ex. http://localsite.dev)
-  url: "http://local.wordpress.test"
+  url: "https://docker.test"
 
 # Autoprefixer will make sure your CSS works with these browsers
 COMPATIBILITY:
@@ -12,7 +12,7 @@ COMPATIBILITY:
 # Gulp will reference these paths when it copies files
 PATHS:
   # Path to dist folder
-  dist: "dist"
+  dist: "dist/assets"
   # Paths to static assets that aren't images, CSS, or JavaScript
   assets:
     - "src/assets/**/*"
@@ -21,11 +21,14 @@ PATHS:
   sass:
     - "node_modules/foundation-sites/scss"
     - "node_modules/motion-ui/src"
+    - "node_modules/select2/dist/css"
   # Paths to SCSS and JavaScript entry points
   entries:
     scss: 
       - "src/assets/scss/app.scss"
+      - "src/assets/scss/editor.scss"
       - "src/assets/scss/admin.scss"
+      - "src/assets/scss/login.scss"
     js: 
       - "src/assets/js/app.js"
       - "src/assets/js/admin.js"

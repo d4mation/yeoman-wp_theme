@@ -1,0 +1,100 @@
+.blog, .category, .tag {
+
+    .main-content {
+
+        & > .subheader {
+
+            text-transform: uppercase;
+            font-size: rem-calc( 14 );
+            letter-spacing: rem-calc( 2 );
+
+            padding-bottom: rem-calc( 20 );
+
+            margin-bottom: rem-calc( 40 );
+
+        }
+
+        .featured-image-link {
+
+            overflow: hidden;
+            display: block;
+
+            .featured-hero {
+                transition: 500ms all ease-out;
+            }
+
+            &:hover, &:focus {
+
+                .featured-hero {
+                    transform: scale( 1.025 );
+                }
+
+            }
+
+        }
+
+    }
+
+    .type-post {
+
+        background-color: $primary-color;
+        @include light-or-dark-text( $primary-color );
+
+        margin-bottom: rem-calc( 30 );
+
+        border-top: solid rem-calc( 4 ) $primary-color;
+        
+        border-bottom-left-radius: $global-radius;
+        border-bottom-right-radius: $global-radius;
+
+        time {
+            font-size: rem-calc( 14 );
+        }
+
+        .entry-title {
+            a {
+                @include light-or-dark-link( $primary-color, $body-font-color );
+                text-decoration: none;
+                &:hover, &:focus {
+                    text-decoration: none;
+                }
+            }
+        }
+
+        .entry-content {
+            padding: rem-calc( 40 );
+        }
+
+        .category-link {
+
+            display: block;
+            min-height: rem-calc( 40 );
+            text-decoration: none;
+            &:hover, &:focus {
+                text-decoration: none;
+            }
+    
+            text-transform: uppercase;
+    
+            @include light-or-dark-link( $primary-color, $primary-color );
+    
+            &:hover, &:focus {
+                border-color: smart-scale( $primary-color, 14% );
+            }
+    
+            font-size: rem-calc( 14 );
+            font-weight: $global-weight-bold;
+    
+            & > span {
+                font-size: 2.5em;
+                margin-right: rem-calc( 15 );
+            }
+    
+            display: inline-flex;
+            align-items: center;
+    
+        }
+
+    }
+
+}

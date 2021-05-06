@@ -1,0 +1,205 @@
+body.single-product {
+
+    .woocommerce {
+
+        div.product {
+
+            @include xy-grid;
+
+            & > div, & > section {
+
+                @include xy-cell( $size: 12, $gutter-type: none );
+                margin-bottom: rem-calc( 30 );
+
+            }
+
+            .price {
+
+                color: $body-font-color;
+                float: left;
+                margin-right: $paragraph-margin-bottom;
+
+            }
+
+            form.cart {
+
+                display: inline-block;
+                @include clearfix;
+
+                .quantity {
+                    margin-right: $paragraph-margin-bottom;
+                }
+
+            }
+
+            .product-courses {
+
+                order: 3;
+
+                .grid-x {
+
+                    .cell {
+
+                        background-color: $primary-color;
+                        @include light-or-dark-text( $primary-color );
+
+                        a {
+                            @include light-or-dark-link( $primary-color );
+                        }
+
+                        border-radius: $global-radius;
+                        padding: rem-calc( 30 );
+
+                        p:last-of-type {
+                            margin-bottom: 0;
+                        }
+
+                        @include xy-cell-bottom-margin;
+
+                    }
+
+                }
+
+            }
+
+            .woocommerce-tabs {
+                order: 4;
+            }
+
+            .related {
+                order: 5;
+            }
+
+        }
+
+    }
+
+    .woocommerce div.product .product-courses, .woocommerce div.product .woocommerce-tabs, .woocommerce div.product .related, section#respond {
+
+        border-top: solid rem-calc( 2 ) #DAE0E6;
+        padding-top: rem-calc( 30 );
+
+    }
+
+    &:not( .no-featured-image ) {
+
+        .woocommerce {
+
+            div.product {
+
+                $margin: $grid-margin-gutters;
+
+                div.images {
+                    
+                    order: 1;
+
+                    @include breakpoint( large ) {
+
+                        order: 2;
+
+                        @include xy-cell( $size: 6, $gutter-position: left );
+
+                        @each $size, $value in $margin {
+                            @include breakpoint( $size ) {
+                                width: calc( 50% - #{rem-calc( $value / 2 )} );
+                            }
+                        }
+
+                    }
+
+                }
+                
+                div.summary {
+                    
+                    order: 2;
+
+                    @include breakpoint( large ) {
+                        @include xy-cell( $size: 6, $gutter-position: right );
+
+                        @each $size, $value in $margin {
+                            @include breakpoint( $size ) {
+                                width: calc( 50% - #{rem-calc( $value / 2 )} );
+                            }
+                        }
+
+                        order: 1;
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    .related {
+
+        & > h2 {
+
+            display: inline-block;
+            margin-bottom: $global-margin;
+
+            & + .button {
+
+                line-height: $header-lineheight;
+
+                &:after {
+                    content: '';
+                    clear: both;
+                }
+
+                @include breakpoint( small only ) {
+                    @include button-expand;
+                }
+
+            }
+
+        }
+
+        .product {
+
+            background-color: $primary-color;
+            @include light-or-dark-text( $primary-color );
+
+            border-top: solid rem-calc( 4 ) $secondary-color;
+
+            a:not( .button ):not( .added_to_cart ) {
+                @include light-or-dark-link( $primary-color );
+            }
+
+            @include breakpoint( small only ) {
+                width: 100% !important;
+            }
+
+            .woocommerce-LoopProduct-link {
+
+                padding: rem-calc( 30 ) rem-calc( 30 ) 0 rem-calc( 30 );
+                display: block;
+                overflow: hidden;
+
+                .woocommerce-loop-product__title {
+                    color: $body-font-color;
+                }
+
+                p {
+                    color: $body-font-color;
+                }
+
+                .price {
+                    font-weight: $global-weight-bold;
+                }
+
+            }
+
+            .button {
+
+                margin: 0 rem-calc( 30 ) rem-calc( 30 ) rem-calc( 30 );
+
+            }
+
+        }
+
+    }
+
+}

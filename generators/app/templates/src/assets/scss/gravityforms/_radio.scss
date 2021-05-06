@@ -1,0 +1,17 @@
+.gform_wrapper {
+
+    .ginput_container_radio {
+
+        input[type="radio"] {
+            margin-bottom: 0;
+            margin-top: rem-calc( 2 ) !important;
+        }
+
+        label {
+            color: inherit;
+            font-weight: inherit !important;
+        }
+
+    }
+
+}

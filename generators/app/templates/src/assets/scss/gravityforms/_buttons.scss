@@ -1,0 +1,23 @@
+.gform_wrapper {
+    
+    .gform_previous_button {
+
+        @extend .alignleft;
+
+    }
+
+    .gform_next_button {
+
+        @extend .alignright;
+
+    }
+
+    .gform_page_footer {
+        text-align: center;
+    }
+
+    .gform_ajax_spinner {
+        padding: 0;
+    }
+
+}

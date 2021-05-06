@@ -1,0 +1,27 @@
+@each $name, $width in $breakpoints {
+
+    @media only screen and ( min-width: $width + 1 ) {
+
+        .show-for-#{$name}-down {
+            display: none;
+        }
+
+    }
+
+}
+
+@include ipad-portrait() {
+
+    .show-for-medium-down {
+        display: initial;
+    }
+
+}
+
+@include ipad-landscape() {
+
+    .show-for-medium-down {
+        display: initial;
+    }
+
+}

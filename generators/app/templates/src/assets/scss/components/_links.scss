@@ -1,0 +1,22 @@
+// Apply outline styles only when input method is keyboard
+// remove :focus style via What Input using progressive enhancement
+// so :focus isn't left broken if JavaScript fails
+
+[data-whatinput="mouse"] a:focus, button:focus
+[data-whatinput="touch"] a:focus, button:focus {
+  outline: none;
+}
+
+a:not( .button ):not( .added_to_cart ) {
+
+  transition: color .5s ease-out;
+
+}
+
+.main-container {
+
+  a:not( .button ):not( .added_to_cart ):not( .course-title-link ):not( .my-achievements ) {
+    font-weight: $global-weight-bold;
+  }
+
+}

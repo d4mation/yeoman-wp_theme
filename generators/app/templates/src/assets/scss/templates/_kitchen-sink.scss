@@ -1,0 +1,84 @@
+.kitchen-sink-header {
+  @include xy-cell(12);
+}
+
+
+.kitchen-sink-components {
+  hr {
+    margin: rem-calc( 48 ) 0;
+  }
+
+  @include breakpoint(small) {
+    @include xy-cell(12);
+  }
+
+  @include breakpoint(large) {
+    @include xy-cell(9);
+  }
+}
+
+.kitchen-sink-nav {
+  @include breakpoint(small) {
+    display: none;
+  }
+
+  @include breakpoint(large) {
+    @include xy-cell(3);
+    display: block;
+    float: right;
+
+    .docs-sub-menu {
+      font-size: rem-calc( 13.6 );
+      margin-top: rem-calc( 16 );
+    }
+
+    .docs-menu-title {
+      text-transform: uppercase;
+      font-size: rem-calc( 12 );
+      color: $dark-gray;
+      font-weight: bold;
+      line-height: 1;
+      padding-left: rem-calc( 14.4 );
+      margin-bottom: rem-calc( 8 );
+      border-top: rem-calc( 1 ) solid $medium-gray;
+      margin-top: rem-calc( 16 );
+      padding-top: rem-calc( 24 );
+    }
+
+    .docs-toc {
+      width: 100%;
+      padding-left: rem-calc( 64 );
+      padding-right: rem-calc( 16 );
+    }
+
+    .docs-toc .active {
+      background: #2199e8;
+      color: white;
+    }
+
+    .docs-toc .docs-sub-menu:first-child .docs-menu-title {
+      margin-top: 0;
+      border-top: 0;
+      padding-top: 0;
+    }
+  }
+}
+
+.kitchen-sink-grid {
+  .grid-x {
+    background: #d6ecfa;
+    font-size: rem-calc( 12 );
+    line-height: rem-calc( 32 );
+    margin-bottom: rem-calc( 24 );
+    
+    .cell,:nth-child(odd) {
+      background: #7bc1ef;
+      color: #0a0a0a;
+    }
+
+    .cell:nth-child(even) {
+      background: #1779ba;
+      color: #fefefe;
+    }
+  }
+}

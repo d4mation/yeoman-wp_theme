@@ -1,0 +1,213 @@
+.learndash-wrapper {
+
+    .kmcu-course-sidebar {
+
+        .ld-focus-sidebar {
+
+            .ld-course-navigation-heading {
+
+                background-color: transparent;
+                padding-bottom: rem-calc( 15 );
+
+                .ld-icon-arrow-left {
+
+                    display: none;
+
+                }
+
+                h3 {
+                    line-height: rem-calc( 20 );
+                    margin-bottom: 0;
+                    font-size: rem-calc( 14 );
+                }
+
+                a {
+
+                    font-weight: $global-weight-bold;
+                    letter-spacing: rem-calc( 2 );
+                    text-transform: uppercase;
+
+                    .ld-icon {
+                        
+                        @extend .far;
+
+                        font-family: 'icomoon' !important;
+
+                        @extend .far.fa-angle-left;
+
+                    }
+
+                    @include light-or-dark-link( $primary-color, $primary-color );
+
+                }
+
+            }
+
+            .ld-course-navigation {
+
+                .ld-lesson-item {
+                    margin-bottom: rem-calc( 10 );
+                    border: none;
+                }
+
+                .ld-lesson-item.ld-is-current-lesson {
+
+                    .ld-lesson-item-preview {
+
+                        a {
+
+                            .ld-lesson-title {
+                                color: inherit;
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                .ld-lesson-item-preview {
+
+                    background-color: $white;
+                    border: solid $primary-color rem-calc( 2 );
+                    @include light-or-dark-text( $white );
+                    border-radius: $global-radius;
+                    padding: rem-calc( 20 );
+                    z-index: 2;
+                    position: relative;
+
+                    .ld-expand-button {
+
+                        @include xy-grid;
+
+                        .ld-icon {
+
+                            @include light-or-dark-link( $white, $primary-color );
+                            background: transparent;
+                            font-size: rem-calc( 22 );
+
+                            position: absolute;
+                            right: rem-calc( 20 );
+                            top: 50%;
+                            transform: translateY( -50% );
+
+                        }
+
+                        .ld-icon-arrow-down {
+                            order: 2;
+                        }
+
+                        .ld-text {
+
+                            @include xy-cell( $size: 11, $gutter-type: none );
+                            order: 1;
+
+                            font-weight: $global-weight-normal;
+
+                            @include light-or-dark-link( $white, #707070 );
+
+                        }
+
+                    }
+
+                    a {
+
+                        @include learndash-item-link;
+
+                        &, .ld-status-icon.ld-status-complete {
+
+                            .ld-icon.ld-icon-checkmark {
+
+                                &:after {
+                                    top: -.125em;
+                                }
+        
+                                font-size: 1em;
+        
+                            }
+
+                        }
+
+                    }
+
+                }
+
+                .ld-lesson-item-expanded {
+
+                    margin-left: 0;
+                    margin-right: 0;
+
+                    border-radius: $global-radius;
+                    border-top-left-radius: 0;
+                    border-top-right-radius: 0;
+                    background-color: $primary-color;
+
+                    padding-top: rem-calc( $global-radius );
+                    margin-top: rem-calc( -$global-radius );
+                    z-index: 1;
+
+                    margin-bottom: 0;
+
+                    .ld-icon-checkmark {
+
+                        &:after {
+                            top: -.25em;
+                        }
+
+                    }
+
+                    .ld-table-list-item-preview {
+
+                        @include learndash-item-link;
+
+                        &, .ld-status-icon.ld-status-complete {
+
+                            .ld-icon.ld-icon-checkmark {
+                                font-size: 1em;
+                            }
+            
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}
+
+body:not( .kmcu-can-access-course-content ) {
+
+    .learndash-wrapper {
+
+        .kmcu-course-sidebar {
+    
+            .ld-focus-sidebar {
+    
+                .ld-course-navigation {
+    
+                    .ld-lesson-item-expanded {
+    
+                        .ld-table-list-item-preview {
+
+                            &, &:hover, &:focus {
+                                color: #707070;
+                            }
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}

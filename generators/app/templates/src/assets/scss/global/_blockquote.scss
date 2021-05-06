@@ -1,0 +1,26 @@
+blockquote {
+
+    &, p {
+        font-weight: $global-weight-bold;
+    }
+
+    *:last-child {
+        margin-bottom: 0;
+    }
+
+    cite {
+
+        font-size: rem-calc( 10 );
+        font-style: normal;
+
+        /*
+        &:before {
+            content: '\2022';
+            color: $primary-color;
+            margin-right: $list-side-margin / 2;
+        }
+        */
+
+    }
+
+}

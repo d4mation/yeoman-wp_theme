@@ -1,0 +1,121 @@
+@keyframes bounceOutRight {
+    0% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX( 0 );
+    }
+    20% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX( rem-calc( -20 ) );
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX( rem-calc( 2000 ) );
+    }
+}
+
+@keyframes bounceInRight {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateX( rem-calc( 2000 ) );
+    }
+    60% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX( rem-calc( -30 ) );
+    }
+    80% {
+        transform: translateX( rem-calc( 10 ) );
+    }
+    100% {
+        transform: translateX( 0 );
+    }
+}
+
+@mixin to-top-hover( $background-color ) {
+    
+    @if lightness( $background-color ) < 45% {
+        
+        color: scale-color($white, $lightness: -14%);
+        
+    }
+    @else {
+        
+        color: scale-color($body-font-color, $lightness: -14%);
+        
+    }
+    
+}
+
+#to-top {
+    
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    right: 2%;
+    bottom: 5%;
+    text-align: center;
+    width: rem-calc( 44 );
+    height: rem-calc( 44 );
+    
+    background-color: $primary-color;
+    border-radius: 50%;
+    font-size: rem-calc( 24 );
+    transition: all .5s ease-out;
+    
+    span {
+
+        &:before {
+            @include light-or-dark-text( $primary-color );
+            transition: all .5s ease-out;
+        }
+        
+        &:hover, &:focus {
+            
+            cursor: pointer;
+
+            &:before {
+            
+                @include to-top-hover( $primary-color 
+                );
+
+            }
+            
+        }
+        
+    }
+    
+    &:hover {
+
+        transform: translateY( rem-calc( -10 ) );
+        
+        cursor: pointer;
+
+        background-color: $primary-color;
+        
+        span {
+
+            &:before {
+            
+                @include to-top-hover( $primary-color );
+
+            }
+            
+        }
+        
+    }
+    
+    &.loaded {
+        animation: bounceOutRight 1s;
+    }
+    
+    &.in {
+        visibility: visible;
+        opacity: 1;
+        animation: bounceInRight 1s;
+    }
+    
+}

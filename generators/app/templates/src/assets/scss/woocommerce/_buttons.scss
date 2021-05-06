@@ -1,0 +1,21 @@
+.added_to_cart {
+    @extend .button.secondary;
+}
+
+.woocommerce, .woocommerce-cart, .woocommerce-page {
+
+    .main-container, .woocommerce-MyAccount-content {
+
+        #respond input#submit, a.button:not( .primary ), button.button:not( .primary ), input.button:not( .primary ) {
+
+            @extend .button.secondary;
+            text-decoration: none;
+            &:hover, &:focus {
+                text-decoration: none;
+            }
+
+        }
+
+    }
+
+}

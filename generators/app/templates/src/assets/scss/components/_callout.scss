@@ -1,0 +1,79 @@
+.callout:not(.rbm-ld-group-registration-group-courses) {
+
+    @include flex;
+    @include flex-align( left, middle );
+
+    div.callout-icon {
+        line-height: 1;
+        font-size: rem-calc( 32 );
+        display: inline-block;
+        margin-right: rem-calc( 10 );
+    }
+
+    div.callout-content {
+        line-height: 1;
+        display: inline-block;
+    }
+
+    @each $name, $color in $foundation-palette {
+
+        &.#{$name} {
+
+            a:not( .button ):not( .added_to_cart ) {
+
+                @include light-or-dark-link( $color );
+
+            }
+
+            .add_to_cart_button, .added_to_cart {
+
+                @if color-pick-contrast( $color, ( $body-font-color, $white  ) ) == $white {
+                    @include white-button;
+                }
+
+            }
+
+            .button, .added_to_cart {
+                margin-bottom: 0;
+            }
+
+        }
+
+    }
+
+    &.subscription-notice, &.discovery-consultation-notice {
+
+        justify-content: space-between;
+
+        @include breakpoint( medium down ) {
+            display: block;
+        }
+
+        & > * {
+            @include breakpoint( medium down ) {
+                display: block;
+            }
+        }
+
+        a:not( .button ) {
+            font-weight: $global-weight-bold;
+        }
+
+        .price {
+
+            font-weight: $global-weight-bold;
+            margin-left: rem-calc( 16 );
+
+            @include breakpoint( large ) {
+                margin-top: rem-calc( 2 );
+            }
+
+        }
+
+    }
+
+    &.last-notice {
+        margin-bottom: rem-calc( 50 );
+    }
+
+}

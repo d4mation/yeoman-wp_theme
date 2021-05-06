@@ -1,0 +1,187 @@
+@mixin light-or-dark-text( $background-color, $dark-text-color: $body-font-color, $light-text-color: $white ) {
+  
+    color: color-pick-contrast( $background-color, ( $dark-text-color, $light-text-color  ) );
+    
+}
+
+@mixin light-or-dark-link( $background-color: $body-background, $dark-link-color: $anchor-color, $light-link-color: $white ) {
+
+  color: color-pick-contrast( $background-color, ( $dark-link-color, $light-link-color  ) );
+
+  &:hover, &:focus {
+
+    color: smart-scale( color-pick-contrast( $background-color, ( $dark-link-color, $light-link-color  ) ), 14% );
+
+  }
+
+}
+
+// Convert Hex to RGBA
+@mixin background-opacity( $color, $opacity: 0.3 ) {
+    background: $color; /* The fallback for ancient things */
+    background: rgba( $color, $opacity );
+}
+
+@mixin create-gradient( $degree, $start, $stop, $start_step: 0%, $stop_step: 100% ) {
+    
+    // No Switch Statement in SCSS? Blah
+    @if $degree == 'vertical' {
+        $degree: 0;
+    }
+    @else if $degree == 'diagonal-up' {
+        $degree: 45;
+    }
+    @else if $degree == 'diagonal-down' {
+        $degree: -45;
+    }
+    @else if ( $degree == 'horizontal' ) {
+        $degree: 90;
+    }
+    
+    /* Fallback for ancient things */
+    background: #{$start};
+    
+    /* FF3.6-15 */
+    background: -moz-linear-gradient( $degree + deg, #{$start} #{$start_step}, #{$stop} #{$stop_step} );
+    
+    /* Chrome10-25,Safari5.1-6 */
+    background: -webkit-linear-gradient( $degree + deg, #{$start} #{$start_step}, #{$stop} #{$stop_step} );
+    
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    @if $degree == -45 {
+        background: linear-gradient( 180 + $degree + deg, #{$start} #{$start_step}, #{$stop} #{$stop_step} );
+    }
+    @else if $degree == 45 {
+        background: linear-gradient( $degree + deg, #{$start} #{$start_step}, #{$stop} #{$stop_step} );
+    }
+    @else {
+        background: linear-gradient( 180 - $degree + deg, #{$start} #{$start_step}, #{$stop} #{$stop_step} );
+    }
+    
+    /* IE6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$start}', endColorstr='#{$stop}',GradientType=1 );
+    
+}
+
+// Cross-browser, scaling Text-Stroke
+@mixin text-stroke( $color ) {
+    
+    text-shadow:
+    -0.02em -0.02em 0 $color,  
+    0.02em -0.02em 0 $color,
+    -0.02em 0.02em 0 $color,
+    0.02em 0.02em 0 $color;
+    //-webkit-text-stroke: 0.025em $color;
+    // text-shadow is supported by IE 11, but doesn't work the best with this typeface
+    
+}
+
+@mixin ipad-portrait() {
+    
+  @media only screen and (min-width: 768px) and (max-width: 768px) and (orientation: portrait) {
+      
+      @content;
+      
+  }
+  
+}
+
+@mixin ipad-landscape() {
+    
+  @media only screen and (min-width: 1024px) and (max-width: 1024px) and (orientation: landscape) {
+      
+      @content;
+      
+  }
+  
+}
+
+// This is stuff like the iPhone 5 which are laughably small compared to more modern phones
+@mixin iphone-five-portrait() {
+
+  @media only screen and (max-width: 320px) and (orientation: portrait) {
+      
+    @content;
+    
+  }
+
+}
+
+// This is stuff like the iPhone 5 which are laughably small compared to more modern phones
+@mixin iphone-five-landscape() {
+
+  @media only screen and (max-width: 568px) and (orientation: landscape) {
+      
+    @content;
+    
+  }
+
+}
+
+// This is stuff like the iPhone 6/7/8 which are laughably small compared to more modern phones
+@mixin iphone-six-seven-eight-portrait() {
+
+  @media only screen and (min-width: 321px) and (max-width: 375px) and (orientation: portrait) {
+      
+    @content;
+    
+  }
+
+}
+
+// This is stuff like the iPhone 6/7/8 which are laughably small compared to more modern phones
+@mixin iphone-six-seven-eight-landscape() {
+
+  @media only screen and (min-width: 569px) and (max-width: 667px) and (orientation: landscape) {
+      
+    @content;
+    
+  }
+
+}
+
+@mixin xy-cell-bottom-margin( $additional_px: 0 ) {
+
+  $gutters: $grid-margin-gutters;
+  @each $size, $value in $gutters {
+
+      $gutters: map-merge( $gutters, ( $size: ( $value * 2 ) + ( $additional_px * 2 ) ) );
+
+  }
+
+  @include xy-gutters( $gutters: $gutters, $gutter-position: bottom );
+
+}
+
+@mixin xy-cell-top-margin( $additional_px: 0 ) {
+
+  $gutters: $grid-margin-gutters;
+  @each $size, $value in $gutters {
+
+      $gutters: map-merge( $gutters, ( $size: ( $value * 2 ) + ( $additional_px * 2 ) ) );
+
+  }
+
+  @include xy-gutters( $gutters: $gutters, $gutter-position: top );
+
+}
+
+@mixin white-button {
+
+  @extend .button.white;
+
+}
+
+@mixin white-button-adjustments {
+
+  color: #1A3180;
+
+  &:hover, &:focus {
+
+    $hover-color: smart-scale( $white, -15% );
+
+    color: color-pick-contrast( $hover-color, $colors: ( $white, #1A3180 ) );
+
+  }
+
+}

@@ -1,0 +1,210 @@
+.sidebar {
+
+    .accordion {
+
+        .accordion-item.is-active {
+
+            .accordion-title {
+                border-bottom: solid rem-calc( 2 ) #DAE0E6;
+            }
+
+        }
+
+        .accordion-content {
+            background-color: $white;
+        }
+
+        margin-bottom: rem-calc( 30 );
+
+    }
+
+    .widget_nav_menu {
+
+        .widget-title {
+
+            font-size: rem-calc( 16 );
+            font-weight: $global-weight-bold;
+            text-transform: uppercase;
+            letter-spacing: rem-calc( 2 );
+            line-height: rem-calc( 28 );
+
+            color: $primary-color;
+
+        }
+
+        ul.menu {
+
+            @include menu-direction(vertical);
+
+            a {
+                font-weight: $global-weight-bold;
+                font-size: rem-calc( 18 );
+            }
+
+            & > li {
+
+                margin-bottom: rem-calc( 15 );
+
+            }
+
+            & > li.menu-item-has-children {
+
+                border-radius: $global-radius;
+                box-shadow: rem-calc( 0 ) rem-calc( 2 ) rem-calc( 4 ) rgba( 0, 0, 0, .5 );
+
+                & > a {
+
+                    background-color: $primary-color;
+                    border-radius: $global-radius;
+
+                    @if lightness( $primary-color ) < 45% {
+
+                        color: $white;
+          
+                        &:hover, &:focus {
+                          color: scale-color($white, $lightness: -14%);
+                        }
+          
+                    }
+                    @else {
+
+                        color: $anchor-color;
+          
+                        &:hover, &:focus {
+                          color: $anchor-color-hover;
+                        }
+                        
+                    }
+
+                }
+
+                // Only impact the first level deep
+                & > ul.sub-menu {
+
+                    $padding: nth( str-split( inspect( $global-menu-padding ), ' ' ), 1 );
+
+                    margin-top: to-number( $padding );
+                    margin-bottom: to-number( $padding );
+
+                }
+
+                ul.sub-menu {
+
+                    margin-left: rem-calc( 40 );
+                    color: get-color( primary );
+
+                    li a {
+                        padding-left: 0;
+                        display: inline-block;
+                    }
+
+                    li.current-menu-item {
+                        & > a {
+                            background: transparent;
+                            color: $anchor-color;
+
+                            &:hover, &:focus {
+                                color: $anchor-color-hover;
+                            }
+                        }
+
+                    }
+
+                }
+
+            }
+
+            & > li.current-menu-item.menu-item-has-children, & > li.current-menu-ancestor {
+
+                & > a {
+
+                    background-color: $secondary-color;
+                    border-radius: $global-radius;
+
+                    @if lightness( $secondary-color ) < 45% {
+
+                        color: $white;
+          
+                        &:hover, &:focus {
+                          color: scale-color($white, $lightness: -14%);
+                        }
+          
+                    }
+                    @else {
+
+                        color: $anchor-color;
+          
+                        &:hover, &:focus {
+                          color: $anchor-color-hover;
+                        }
+                        
+                    }
+
+                }
+
+            }
+
+            & > li:not( .menu-item-has-children ) {
+
+                & > a {
+
+                    background-color: $primary-color;
+                    border-radius: $global-radius;
+                    position: relative;
+
+                    @if lightness( $primary-color ) < 45% {
+
+                        color: $white;
+          
+                        &:hover, &:focus {
+                          color: scale-color($white, $lightness: -14%);
+                        }
+          
+                    }
+                    @else {
+
+                        color: $anchor-color;
+          
+                        &:hover, &:focus {
+                          color: $anchor-color-hover;
+                        }
+                        
+                    }
+
+                    &:after {
+
+                        font-family: 'icomoon';
+                        // fas fa-angle-right
+                        content: '\e903';
+
+                        position: absolute;
+                        top: 50%;
+                        right: rem-calc( 21 );
+                        bottom: auto;
+                        left: auto;
+
+                        transform: translateY( -50% );
+
+                        color: get-color( primary );
+
+                    }
+
+                    &:hover, &:focus {
+
+                        &:after {
+
+                            color: smart-scale( get-color( primary ), 14% );
+
+                        }
+
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}

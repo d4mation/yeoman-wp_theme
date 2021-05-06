@@ -1,0 +1,101 @@
+.learndash-wrapper {
+
+    .ld-assignment-list {
+
+        .ld-table-list-header {
+
+            background-color: $primary-color;
+            @include light-or-dark-text( $primary-color );
+
+        }
+
+        .ld-table-list-header {
+
+            padding-top: rem-calc( 20 ) + rem-calc( $global-radius );
+            padding-bottom: rem-calc( 10 );
+            padding-right: rem-calc( 54 );
+            padding-left: rem-calc( 54 );
+            
+            background-color: $primary-color;
+            @include light-or-dark-text( $primary-color );
+
+            .ld-item-icon {
+
+                font-size: rem-calc( 14 );
+                margin-left: rem-calc( -7 );
+                margin-right: rem-calc( 7 );
+                text-align: center;
+                width: rem-calc( 26 );
+
+            }
+
+        }
+
+        .ld-table-list-items {
+
+            padding: 0 rem-calc( 54 );
+
+        }
+
+        .ld-table-list-item-preview {
+
+            @include learndash-item-link;
+
+            padding-top: 0;
+            padding-bottom: rem-calc( 10 );
+            margin-left: rem-calc( -7 );
+
+            .ld-status-icon {
+                height: auto;
+            }
+
+        }
+
+        .ld-table-list-item {
+
+            margin: 0;
+
+            &:last-child {
+
+                .ld-table-list-item-preview {
+                    padding-bottom: rem-calc( 20 );
+                }
+
+            }
+
+        }
+
+        .ld-file-upload {
+
+            background: transparent;
+
+            label[for="uploadfiles"] {
+                background-color: $primary-color;
+            }
+
+            .ld-button {
+                margin-bottom: 0;
+            }
+
+        }
+
+        .ld-table-list-footer {
+            background: transparent;
+        }
+
+        .ld-table-list-items, .ld-table-list-footer {
+            border: rem-calc( 2 ) solid $primary-color;
+        }
+
+        .ld-table-list-items {
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .ld-table-list-footer { 
+            border-top: none;
+        }
+
+    }
+
+}

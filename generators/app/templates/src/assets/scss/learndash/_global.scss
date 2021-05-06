@@ -1,0 +1,366 @@
+.ld-icon.ld-icon-quiz {
+
+    @extend .fas;
+
+    // LearnDash is using Important here too
+    font-family: 'icomoon' !important;
+
+    @extend .kmcu-icon.quiz;
+
+}
+
+.ld-icon.ld-icon-checkmark {
+
+    @extend .kmcu-icon;
+
+    font-family: 'icomoon' !important;
+
+    @extend .kmcu-icon.checkbox;
+
+    &:after {
+
+        font-weight: $global-weight-normal;
+        top: -.125em;
+        bottom: 0;
+        left: 0;
+
+    }
+
+}
+
+.ld-icon.ld-icon-content {
+
+    @extend .far;
+
+    font-family: 'icomoon' !important;
+
+    @extend .far.fa-file-alt;
+
+}
+
+.ld-expand-button {
+
+    .ld-icon {
+
+        @extend .far;
+
+        font-family: 'icomoon' !important;
+
+        @extend .far.fa-plus;
+
+    }
+
+    &.ld-expanded {
+
+        .ld-icon {
+            
+            @extend .far.fa-times;
+
+        }
+
+    }
+
+}
+
+.learndash-wrapper {
+
+    // Line up with the sidebar properly
+    .ld-tabs.ld-tab-count-1 {
+        margin-top: 0;
+    }
+
+    .ld-course-status, .ld-topic-status, .ld-lesson-status {
+
+        // We don't want this background and padding
+        &.ld-course-status-enrolled, &.ld-topic-status, &.ld-lesson-status, .ld-breadcrumbs {
+
+            background: transparent;
+            padding: 0;
+
+            .ld-progress {
+                padding: 0;
+            }
+
+        }
+
+        &.ld-course-status-enrolled, &.ld-topic-status, &.ld-lesson-status {
+
+            @include xy-grid();
+
+            display: flex;
+            justify-content: space-between;
+
+            .ld-progress, .ld-status, .ld-breadcrumbs {
+
+                @include xy-cell( $size: 12, $gutter-type: none );
+
+            }
+
+            .ld-status {
+
+                //background: get-color( primary );
+                //@include light-or-dark-text( get-color( primary ) );
+
+                font-style: italic;
+                background: transparent;
+                color: $body-font-color;
+                text-align: left;
+                padding: 0;
+                text-transform: none;
+                margin: 0;
+                margin-top: rem-calc( 56 ) - $progress-margin-bottom;
+                font-weight: $global-weight-normal;
+                font-size: rem-calc( 16 );
+
+                display: inline-block;
+                width: auto;
+
+            }
+
+            .ld-progress {
+                order: 1;
+            }
+
+            .ld-breadcrumbs, .ld-status {
+                order: 2;
+            }
+
+            .cert-link {
+                order: 3;
+                margin-top: ( ( rem-calc( 56 ) - $progress-margin-bottom ) / 2 ) + .125rem;
+                margin-bottom: 0;
+            }
+
+        }
+
+    }
+    
+    // Rearrange the Progress bar items and restyle them
+    .ld-progress {
+
+        .ld-progress-heading .ld-progress-stats .ld-progress-percentage {
+            color: #1A1A1A;
+            font-weight: $global-weight-bold;
+        }
+
+        &, &.ld-progress-inline {
+
+            @include xy-grid();
+
+            .ld-progress-heading {
+
+                @include xy-cell( $size: 12, $gutter-type: none );
+                @include flex-align( right, top );
+
+                .ld-progress-stats {
+
+                    font-size: rem-calc( 14 );
+                    margin-bottom: rem-calc( 8 );
+
+                    .ld-progress-percentage {
+                        font-weight: $global-weight-bold;
+                        text-transform: none;
+                    }
+
+                }
+
+            }
+
+            .ld-progress-bar {
+
+                @include xy-cell( $size: 12, $gutter-type: none );
+                @include progress-container;
+
+                .ld-progress-bar-percentage {
+
+                    @include progress-meter;
+                    border-radius: $progress-radius;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    // This progress bar is shown at the bottom of interior pages in a Course
+    .kmcu-interior-course-progress {
+
+        .ld-progress {
+
+            &, &.ld-progress-inline {
+    
+                .ld-progress-heading {
+
+                    @include flex-align( left, top );
+
+                }
+
+            }
+
+        }
+
+    }
+
+    .sfwd-mark-complete input[type="submit"], .ld-button, .ld-quiz-actions input[name="reShowQuestion"], .ld-quiz-actions input[name="restartQuiz"], .wpProQuiz_content a#quiz_continue_link, .ld-content-actions .ld-primary-color {
+        
+        font-size: rem-calc( 16 );
+        font-weight: $global-weight-bold;
+        max-width: none;
+        width: auto;
+
+        @extend .button.primary;
+
+        &:visited {
+            
+            @include light-or-dark-link( $primary-color );
+
+        }
+
+        .ld-text {
+            padding: 0;
+        }
+
+    }
+
+    .ld-quiz-actions input[name="reShowQuestion"] {
+        margin-right: rem-calc( 10 );
+    }
+
+    // These buttons are shown under the sidebar of interior pages in a Course
+    .kmcu-course-actions {
+
+        .ld-content-actions {
+
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            border: none;
+
+            .ld-content-action {
+
+                padding: 0;
+
+                &.ld-empty {
+                    display: none;
+                }
+        
+                flex: none;
+                display: inline-block;
+
+                .ld-button {
+                    width: 100%;
+                }
+
+                @include breakpoint( small only ) {
+
+                    // LD adds a margin to the container for the buttons which causes our hidden button to have a margin
+                    margin-bottom: 0;
+
+                    // Remove the padding for the container added by the float class
+                    padding: 0;
+
+                    .ld-button {
+                        // copied from LD
+                        margin-bottom: 2em;
+                    }
+
+                }
+
+                @include breakpoint( medium ) {
+
+                    .ld-button {
+                        width: auto;
+                    }
+
+                }
+        
+                // This is the "Back to Course/Lesson" button that we do not want
+                .ld-course-step-back {
+                    display: none;
+                }
+
+                .ld-icon-arrow-right {
+
+                    @extend .far;
+
+                    font-family: 'icomoon' !important;
+
+                    @extend .far.fa-angle-right;
+
+                }
+
+                .ld-icon-arrow-left {
+
+                    @extend .far;
+
+                    font-family: 'icomoon' !important;
+
+                    @extend .far.fa-angle-left;
+
+                }
+
+                .sfwd-mark-complete {
+
+                    &:after {
+                        @extend .far;
+                        font-family: 'icomoon' !important;
+                        content: "\e909";
+                        @include light-or-dark-text( $primary-color );
+                        top: 25%;
+                        transform: translateY( 0% );
+                        right: rem-calc( 8 );
+                    }
+
+                    input[type="submit"] {
+
+                        $padding: nth( str-split( inspect( $button-padding ), ' ' ), 2 );
+
+                        padding-right: to-number( $padding ) + 1;
+
+                    }
+
+                    &:hover, &:focus {
+                        &:after {
+                            color: smart-scale( color-pick-contrast( $primary-color, ( $anchor-color, $white ) ), 14% );
+                        }
+                    }
+
+                }
+
+                .ld-icon-arrow-left, .ld-icon-arrow-right {
+                    font-size: rem-calc( 16 );
+                }
+        
+            }
+
+        }
+
+    }
+
+    .wpProQuiz_content {
+
+        .wpProQuiz_button {
+
+            @extend .button.primary;
+
+        }
+
+        .wpProQuiz_button2 {
+
+            @extend .button.secondary;
+
+        }
+
+    }
+
+    .ld-pagination {
+
+        .ld-pages {
+            margin: 0 auto;
+        }
+
+    }
+
+}

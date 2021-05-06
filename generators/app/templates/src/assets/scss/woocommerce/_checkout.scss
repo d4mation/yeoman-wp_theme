@@ -1,0 +1,36 @@
+body.woocommerce-checkout {
+
+    .woocommerce {
+
+        .woocommerce-checkout-review-order {
+
+            & > * {
+
+                margin: rem-calc( 50 ) 0;
+                padding: rem-calc( 50 ) 0;
+
+                border-top: solid rem-calc( 2 ) #DAE0E6;
+                border-bottom: solid rem-calc( 2 ) #DAE0E6;
+
+                &:first-child {
+                    border-top: none;
+                    border-bottom: none;
+                    margin-top: 0;
+                    padding-top: 0;
+                }
+
+                &:last-child {
+                    padding-top: 0;
+                    padding-bottom: 0;
+                    margin-bottom: 0;
+                    border-top: none;
+                    border-bottom: none;
+                }
+
+            }
+
+        }
+
+    }
+
+}

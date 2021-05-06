@@ -1,0 +1,35 @@
+.gform_wrapper {
+
+    label.gfield_label {
+        font-size: rem-calc( 18 );
+        font-weight: $global-weight-bold;
+    }
+
+    .ginput_complex {
+
+        label {
+            font-size: rem-calc( 12 );
+            font-weight: $global-weight-normal;
+            line-height: rem-calc( 20 );
+        }
+
+    }
+
+    .field_sublabel_below {
+
+        .ginput_complex {
+
+            select {
+                margin-bottom: $form-spacing !important;
+            }
+
+            label {
+                margin-top: - #{ $form-spacing / 2 } !important;
+                margin-bottom: $form-spacing !important;
+            }
+
+        }
+
+    }
+
+}

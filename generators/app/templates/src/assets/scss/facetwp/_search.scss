@@ -1,0 +1,48 @@
+.facetwp-type-search {
+
+    display: grid;
+
+    .facetwp-icon {
+
+        display: flex;
+        align-items: center;
+
+        background: none;
+        opacity: 1;
+
+        right: auto;
+        left: rem-calc( 10 );
+
+        @extend .fas;
+        @extend .fas.fa-search;
+
+        &:before {
+            background: none;
+            color: $primary-color;
+            width: auto;
+            height: auto;
+            font-size: rem-calc( 16 );
+        }
+
+        &.f-loading {
+
+            &:before {
+                animation: none;
+            }
+
+        }
+
+    }
+
+    .facetwp-search {
+
+        margin-bottom: 0;
+
+        padding-left: rem-calc( 35 );
+
+        background-color: #EEEEEE;
+        border: none;
+
+    }
+
+}

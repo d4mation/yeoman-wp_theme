@@ -1,0 +1,94 @@
+@mixin learndash-item-link {
+
+    @include light-or-dark-link( $primary-color, $anchor-color );
+
+    &:hover, &:focus {
+        text-decoration: underline;
+    }
+
+    .ld-lesson-title {
+        font-weight: $global-weight-bold;
+    }
+
+    .ld-status-icon {
+
+        background-color: transparent;
+
+        &.ld-status-incomplete {
+            border-color: #B3B3B3;
+        }
+
+        &.ld-status-in-progress {
+
+            border-color: #B3B3B3;
+
+            border-left-color: $primary-color;
+            border-top-color: $primary-color;
+
+        }
+
+        &.ld-status-complete .ld-icon {
+
+            // LD does a different size for complete which looks bad
+            font-size: 1.5em;
+
+        }
+
+        .ld-icon {
+            &:before {
+                color: $primary-color;
+            }
+        }
+
+        &.far {
+
+            border: none;
+            margin-top: rem-calc( 3 );
+
+            &:before {
+                color: $primary-color;
+            }
+
+        }
+
+    }
+
+    .ld-item-title, .ld-topic-title {
+        font-weight: $global-weight-bold;
+    }
+
+    &:hover, &:focus {
+
+        .ld-status-icon {
+
+            .ld-icon, &.far {
+
+                &:before {
+                    color: smart-scale( $primary-color, 14% );
+                }
+
+            }
+
+            &.ld-status-complete {
+
+                .ld-icon.ld-icon-checkmark {
+
+                    &:before {
+
+                        background-color: smart-scale( $primary-color, 14% );
+
+                    }
+
+                    &:after {
+                        color: smart-scale( $white, 14% );
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+}

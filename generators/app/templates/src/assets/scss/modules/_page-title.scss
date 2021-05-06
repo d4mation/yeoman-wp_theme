@@ -1,0 +1,135 @@
+.page-title-container {
+
+    position: relative;
+    @include create-gradient( 'horizontal', $primary-color, lighten( desaturate( adjust-hue( $primary-color, -3 ), 5.12 ), 12.75 ) );
+    min-height: rem-calc( 80 );
+    padding: rem-calc( 20 ) 0;
+
+    @include breakpoint( medium ) {
+        min-height: rem-calc( 200 );
+        padding: rem-calc( 46 ) 0;
+    }
+
+    @include breakpoint( medium ) {
+
+        &:before {
+
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+
+            //background-image: url( '../img/banner-background.png' );
+            background-position: 0% 100%;
+            background-repeat: no-repeat;
+            background-size: cover;
+
+        }
+
+    }
+
+    &, *, .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+        @include light-or-dark-text( $primary-color );
+    }
+
+    .before-title {
+
+        font-size: rem-calc( 14 );
+        font-weight: $global-weight-bold;
+        text-transform: uppercase;
+        letter-spacing: rem-calc( 2 );
+
+        & > span {
+            font-size: rem-calc( 20 );
+            line-height: rem-calc( 34 );
+            margin-right: rem-calc( 4 );
+        }
+
+    }
+
+    .page-title {
+        margin-bottom: 0;
+    }
+
+    .subtitle {
+        margin-top: $header-margin-bottom;
+        font-weight: $global-weight-bold;
+    }
+
+    @include flex;
+    @include flex-align( left, middle );
+
+    .grid-container {
+
+        position: relative;
+        width: 100%;
+
+        $padding: $grid-container-padding;
+
+        @each $size, $value in $padding {
+            $padding: map-merge( $padding, ( $size: ( $value ) * 1.5 ) );
+        }
+
+        @include xy-gutters( $gutters: $padding, $gutter-type: padding );
+
+        .grid-x {
+
+            & > .cell {
+
+                $gutters: $grid-margin-gutters;
+
+                @each $size, $value in $gutters {
+                    @if ( $size != 'small' ) {
+                        $gutters: map-merge( $gutters, ( $size: ( $value ) / 2 ) );
+                    }
+                }
+
+                @include xy-gutters( $gutters: $gutters, $gutter-type: margin );
+
+                *:last-child {
+                    margin-bottom: 0;
+                }
+
+            }
+
+        }
+
+    }
+
+    .breadcrumbs {
+
+        &, * {
+            @include light-or-dark-text( $primary-color );
+        }
+
+        font-weight: $global-weight-normal;
+
+        li {
+
+            a {
+
+                font-weight: $global-weight-bold;
+                text-decoration: none;
+                &:hover, &:focus {
+                    text-decoration: none;
+                }
+
+                @include light-or-dark-link( $primary-color );
+
+            }
+
+            &:after {
+                font-weight: $global-weight-bold;
+            }
+
+            &:not(:last-child):after {
+                @include light-or-dark-text( $primary-color );
+            }
+
+        }
+
+    }
+
+}

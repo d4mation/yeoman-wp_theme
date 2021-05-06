@@ -1,0 +1,65 @@
+body.single-sfwd-quiz {
+
+    .learndash-wrapper {
+
+        .wpProQuiz_content {
+
+            .wpProQuiz_questionListItem {
+
+                label {
+
+                    border-color: $primary-color;
+
+                    &.is-selected, &:focus-within {
+                        border-color: smart-scale( $primary-color, 14% );
+                    }
+
+                }
+
+            }
+
+        }
+
+        .kmcu-course-actions {
+
+            .ld-content-actions {
+    
+                display: block;
+    
+                .ld-content-action {
+
+                    width: auto;
+
+                    .sfwd-mark-complete {
+                        display: none;
+                    }
+
+                }
+
+            }
+
+        }
+
+    }
+
+    // If you ask me, this is a LD bug. 
+    // They shouldn't be attempting to restrict people from content with _client side CSS_
+    // If you attempt to access items you don't have access to, you hit an error message. If they don't have access, an anchor tag shouldn't get rendered to begin with
+    .user_has_no_access {
+
+        .kmcu-course-sidebar {
+
+            .ld-lesson-item-preview, a {
+                cursor: pointer;
+                pointer-events: inherit;
+            }
+
+        }
+
+    }
+
+    .course_progress .sending_progress_bar {
+        background: $progress-meter-background;
+    }
+
+}

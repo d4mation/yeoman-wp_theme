@@ -1,0 +1,614 @@
+// Site title
+.site-desktop-title a {
+  font-weight: bold;
+}
+
+// WP post navigation
+.post-navigation {
+  @include clearfix;
+}
+
+.nav-previous {
+  float:left;
+}
+
+.nav-next {
+  float:right;
+}
+
+header.site-header {
+  background-color: $header-background;
+}
+
+.top-bar {
+
+  .top-bar-left, .top-bar-right {
+
+    @include breakpoint( small ) {
+      flex: none;
+    }
+
+  }
+
+}
+
+// Make the Top Bar contents match up with the body of the page
+.top-bar {
+
+  @include breakpoint( large ) {
+    min-height: rem-calc( 105 );
+  }
+
+  @include xy-grid-container;
+
+  .top-bar-left, .top-bar-right {
+
+    @include breakpoint(small) {
+      @include xy-cell(12);
+    }
+
+    // Make the Left and Right sections line up on Mobile
+    @include breakpoint( small only ) {
+      flex: 0 0 auto;
+      width: auto;
+    }
+
+  }
+
+  .top-bar-left {
+
+    @include breakpoint(small) {
+      @include xy-cell( 7 );
+    }
+
+    @include breakpoint(medium) {
+      @include xy-cell(3);
+    }
+
+  }
+
+  .top-bar-right {
+
+    @include breakpoint(small) {
+      @include xy-cell( 5 );
+    }
+
+    @include breakpoint(medium) {
+      @include xy-cell(9);
+    }
+
+  }
+
+}
+
+// Adjustments for the Logo and the Mobile Hamburger button
+.top-menu-container {
+
+  position: relative;
+
+  .top-bar-title {
+
+    position: absolute;
+    z-index: 999;
+
+    @include breakpoint( small only ) {
+      margin-top: 0;
+    }
+
+    svg {
+
+      height: rem-calc( 75 );
+
+      @include breakpoint( medium ) {
+        height: rem-calc( 88 );
+      }
+
+      @include breakpoint( large ) {
+        height: rem-calc( 130 );
+      }
+
+      width: auto;
+
+    }
+
+  }
+
+  button[data-toggle="off-canvas-menu"] {
+
+    display: flex;
+    align-items: baseline;
+
+  }
+
+  .menu-icon {
+
+    & + .text-container {
+
+      margin-left: $paragraph-margin-bottom / 2;
+      font-weight: $global-weight-bold;
+
+    }
+
+    @extend .far;
+    @extend .far.fa-bars;
+
+    &:before {
+
+      color: $primary-color;
+
+    }
+
+    &.button {
+
+      border-radius: 50%;
+      padding: $button-padding;
+      border: none;
+      margin-bottom: 0;
+
+    }
+
+    @each $name, $color in $foundation-palette {
+
+      &.button.#{$name} {
+
+        &:before {
+
+          @include light-or-dark-text( $color );
+
+        }
+
+      }
+
+    }
+
+  }
+
+  @include ipad-landscape() {
+
+    .hide-for-large {
+      display: none;
+    }
+
+  }
+
+}
+
+.top-menu-container {
+
+  @include breakpoint( large ) {
+
+    display: inline-block;
+
+  }
+
+}
+
+.desktop-menu-container {
+
+  @include breakpoint( medium only ) {
+
+    display: inline-block;
+
+  }
+
+  @include ipad-portrait() {
+
+    display: inline-block;
+
+  }
+
+  @include ipad-landscape() {
+
+    display: inline-block;
+
+  }
+
+}
+
+.top-menu-container {
+  width: 100%;
+}
+
+.top-menu-container {
+
+  padding: $titlebar-padding;
+  padding-left: 0;
+  padding-right: 0;
+
+  text-align: right;
+
+  .input-group {
+    margin-bottom: 0;
+  }
+
+  ul:not( .is-dropdown-submenu ) {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .search-form-container, .menu-icon-container {
+    display: inline-block;
+  }
+
+  .top-nav {
+
+    @include breakpoint( medium down ) {
+
+      display: inline-block;
+  
+    }
+  
+    @include ipad-portrait() {
+  
+      display: inline-block;
+  
+    }
+  
+    @include ipad-landscape() {
+  
+      display: inline-block;
+  
+    }
+
+  }
+
+}
+
+// Navigation Menu changes
+.desktop-menu {
+
+  background: transparent;
+
+  @include breakpoint( large ) {
+
+    float: right;
+
+  }
+
+  @include breakpoint( medium only ) {
+
+    float: none;
+
+    &:not(.top-nav) > li.menu-item:not(.button) {
+      display: none;
+    }
+
+  }
+
+  @include ipad-portrait() {
+
+    float: none;
+
+    &:not(.top-nav) > li.menu-item:not(.button) {
+      display: none;
+    }
+
+  }
+
+  @include ipad-landscape() {
+
+    float: none;
+
+  }
+
+}
+
+.desktop-menu, .account-nav {
+
+  & > li.menu-item {
+
+    &.button {
+
+      background-color: transparent;
+      padding: 0;
+      margin: 0;
+      color: inherit;
+
+      @each $name, $color in $foundation-palette {
+
+        &.#{$name} {
+        
+          a {
+
+              @include button( false, $color, scale-color( $color, $lightness: -15% ), 'auto' );
+              margin-bottom: 0;
+
+          }
+
+        }
+
+      }
+
+      a {
+        padding: $global-menu-padding !important;
+        $padding: nth( str-split( inspect( $global-menu-padding ), ' ' ), 2 );
+        margin-left: to-number( $padding ) / 2 !important;
+        font-weight: $global-weight-normal;
+      }
+
+    }
+
+    &:not( .button ) > a {
+
+      font-weight: $global-weight-bold;
+
+      @include light-or-dark-link( $header-background, $body-font-color );
+
+      position: relative;
+
+      $padding: to-number( nth( str-split( inspect( $dropdownmenu-padding ), ' ' ), 2 ) );
+
+      &:before {
+        transition: width .5s ease-out;
+        content: '';
+        position: absolute;
+        top: auto;
+        right: 0;
+        bottom: 0;
+        left: 50%;
+        transform: translateX( -50% );
+        height: rem-calc( 2 );
+        width: 0;
+        background-color: $primary-color;
+      }
+
+      &.hover, &:hover, &:focus {
+
+        &:before {
+          width: calc( 100% - #{ $padding * 2 } );
+        }
+
+      }
+
+    }
+
+    & > a {
+
+      .kmcu-icon-stack {
+
+        height: rem-calc( 24 );
+        width: rem-calc( 24 );
+        line-height: rem-calc( 24 );
+        margin-right: rem-calc( 4 );
+
+        .icon-background {
+          background-color: $primary-color;
+          width: rem-calc( 24 );
+          height: rem-calc( 24 );
+          border-radius: 50%;
+          font-size: rem-calc( 12 );
+        }
+
+        .icon-background + span {
+          font-size: rem-calc( 12 );
+        }
+
+      }
+
+    }
+
+  }
+
+  & > .is-dropdown-submenu-parent {
+
+    // Hide how the triangle seems to move to under the menu item?
+    & > a {
+      &:hover, &:focus {
+        &:after {
+          border: none !important;
+        }
+      }
+    }
+
+    & > .submenu {
+
+      border-radius: 0;
+      border-color: $topbar-submenu-background;
+      
+      padding: rem-calc( 20 );
+      margin-top: $paragraph-margin-bottom / 2;
+      text-align: left;
+
+      filter: drop-shadow( 0 rem-calc( 2 ) rem-calc( 4 ) rgba( 0, 0, 0, .5 ) );
+
+      li.is-active a, a {
+          
+        color: #707070;
+        margin: 0;
+        line-height: 1;
+        font-weight: $global-weight-normal;
+
+        &:hover, &:focus {
+          color: $body-font-color;
+        }
+
+      }
+
+      // All other children after 1 level deep
+      li.is-dropdown-submenu-parent {
+
+        & > a {
+          &:after {
+            content: none;
+          }
+        }
+
+        ul.is-dropdown-submenu {
+
+          display: block;
+          right: auto;
+          left: auto;
+          position: relative;
+          border: 0;
+
+          list-style: disc;
+
+          li {
+
+            color: get-color( primary );
+            margin-left: $list-side-margin * 2;
+
+            a {
+              padding-left: 0;
+            }
+
+          }
+
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+.account-nav.dropdown.menu {
+  
+  .submenu {
+
+    padding: rem-calc( 12 );
+
+  }
+
+  a {
+    font-size: rem-calc( 14 );
+    font-weight: $global-weight-bold !important;
+    padding-top: rem-calc( 8 ) !important;
+    padding-bottom: rem-calc( 8 ) !important;
+  }
+
+  & > li.menu-item:not(.button) > a {
+
+    @include light-or-dark-link( $header-background, $primary-color );
+
+    &:hover, &:focus {
+      color: $primary-color;
+    }
+
+  }
+
+  & > li.is-dropdown-submenu-parent > a {
+
+    &:after {
+
+      border: none;
+      color: $primary-color;
+      @extend .far;
+      @extend .far.fa-angle-down-after;
+
+      margin-top: em-calc( -8, 14px );
+      right: em-calc( 14, 14px );
+
+    }
+
+    &:hover, &:focus {
+
+      &:after {
+        display: none;
+      }
+
+    }
+
+  }
+
+}
+
+.desktop-menu {
+
+  & > li.menu-item {
+
+    &, &.button {
+
+      & > a {
+
+        font-size: rem-calc( 20 );
+        font-weight: $global-weight-bold;
+
+      }
+      
+    }
+
+    &.button {
+
+      @each $name, $color in $foundation-palette {
+
+        &.#{$name} {
+
+          & > a {
+            font-size: rem-calc( 20 );
+          }
+          
+        }
+
+      }
+
+    }
+
+  }
+
+}
+
+.top-menu-container {
+
+  background-color: $white;
+  @include light-or-dark-text( $white );
+
+  @include breakpoint( large ) {
+
+    background-color: $primary-color;
+    @include light-or-dark-text( $primary-color );
+
+  }
+
+}
+
+.top-menu-container, .mobile-off-canvas-menu {
+
+  form {
+
+    .input-group {
+
+      box-shadow: rem-calc( 0 ) rem-calc( 0 ) rem-calc( 6 ) rem-calc( 0 ) rgba( 0, 0, 0, .25 );
+      border-radius: $input-radius;
+
+      input[type="text"] {
+        background-color: $white;
+      }
+
+      input[type="submit"] {
+        @extend .button.primary;
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
+      }
+
+    }
+
+    // We have to re-include this to force WooCommerce to stop styling this button
+    @include foundation-form-prepostfix;
+
+    .input-group {
+      margin-bottom: 0;
+    }
+
+  }
+
+}
+
+.mobile-off-canvas-menu {
+
+  form {
+    margin: $global-menu-padding;
+  }
+
+  ul {
+    & > li.button { 
+      & > a {
+        margin-bottom: 0 !important;
+      }
+    } 
+  }
+
+}

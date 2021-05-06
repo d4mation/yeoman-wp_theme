@@ -8,4 +8,5 @@
 <% if (author !== '') { %> * Author: <%- author _%><%= "\n" %><% } -%>
 <% if (authorURI !== '') { %> * Author URI: <%- authorURI _%><%= "\n" %><% } -%>
 <% if (contributors !== '') { %> * Contributors: <%- contributors _%><%= "\n" %><% } -%>
+<% if (gitHubPath !== '') { %> * GitHub Theme URI: <%- gitHubPath _%><%= "\n" %> * GitHub Branch: master<%= "\n" %><% } -%>
  */

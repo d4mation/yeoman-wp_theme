@@ -1,0 +1,12 @@
+.menu-item.cart-contents {
+
+    @include breakpoint( medium ) {
+        margin-right: rem-calc( 16 );
+    }
+
+    .fa-shopping-cart {
+        color: $primary-color;
+        margin-right: rem-calc( 4 );
+    }
+
+}

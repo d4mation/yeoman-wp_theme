@@ -1,0 +1,62 @@
+.accordion {
+
+    box-shadow: rem-calc( 0 ) rem-calc( 2 ) rem-calc( 4 ) rgba( 0, 0, 0, .5 );
+    border-radius: $global-radius;
+
+    .accordion-title {
+
+        text-transform: uppercase;
+        font-size: rem-calc( 16 );
+        font-weight: $global-weight-bold;
+        letter-spacing: rem-calc( 2 );
+        line-height: rem-calc( 28 );
+
+        border-radius: $global-radius;
+
+        &:before {
+
+            top: 55%;
+            transform: translateY( -40% );
+
+            @extend .far;
+            @extend .far.fa-plus;
+
+        }
+
+        &:hover, &:focus {
+            color: color-pick-contrast( $accordion-item-background-hover, ( $body-font-color, $white  ) );
+        }
+
+    }
+
+    .accordion-item.is-active {
+
+        .accordion-title {
+            &:before {
+                @extend .far.fa-times;
+            }
+        }
+
+    }
+
+    .accordion-item {
+
+        &:first-child > &:first-child {
+            border-radius: $global-radius;
+        }
+    
+        &:last-child > &:last-child {
+            border-radius: $global-radius;
+        }
+
+        &:last-child:not( .is-active ) {
+
+            & > .accordion-title {
+                border-radius: $global-radius;
+            }
+
+        }
+
+    }
+
+}

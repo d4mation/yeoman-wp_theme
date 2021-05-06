@@ -1,0 +1,424 @@
+// We took only specific Font Awesome Pro icons and brought them into an IcoMoon generated font. This saved a lot of bandwidth, bringing the font files necessary down from 2 MB to 20 KB
+// This is including the custom icons.
+
+@font-face {
+    font-family: 'icomoon';
+    src: url( '../fonts/icomoon.eot?z1zria' );
+    src: url( '../fonts/icomoon.eot?z1zria#iefix' ) format( 'embedded-opentype' ),
+        url( '../fonts/icomoon.ttf?z1zria' ) format( 'truetype' ),
+        url( '../fonts/icomoon.woff?z1zria' ) format( 'woff' ),
+        url( '../fonts/icomoon.svg?z1zria#icomoon' ) format( 'svg' );
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+.fal, .far, .fab, .fa, .fas, .kmcu-icon {
+
+    font-family: 'icomoon';
+    font-weight: normal;
+    font-style: normal;
+    speak: none;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    &.h1, &.h2, &.h3, &.h4, &.h5, &.h6 {
+        line-height: $header-lineheight;
+    }
+
+}
+
+.fal {
+    font-weight: $global-weight-normal;
+}
+
+.far {
+    font-weight: $global-weight-normal;
+}
+
+.fab {
+    font-weight: $global-weight-normal;
+}
+
+.fa,
+.fas {
+  font-weight: $global-weight-normal;
+}
+
+.kmcu-icon {
+
+    &.trophy-lock:before, &.trophy-lock-after:after {
+        content: "\e90f";
+    }
+
+    &.trophy-star:before, &.trophy-star-after:after {
+        content: "\e910";
+    }
+
+    &.star-lock:before, &.star-lock-after:after {
+        content: "\e911";
+    }
+    
+    &.trophy:before, &.trophy-after:after {
+        content: "\e912";
+    }
+
+    &.star:before, &.star-after:after {
+        content: "\e90e";
+    }
+
+    &.lightbulb:before, &.lightbulb-after:after {
+        content: "\e916";
+    }
+
+    &.doc-code:before, &.doc-code-after:after {
+        content: "\e918";
+    }
+
+    &.doc-code-2:before, &.doc-code-2-after:after {
+        content: "\e919";
+    }
+
+    &.evaluate:before, &.evaluate-after:after {
+        content: "\e91a";
+    }
+
+    &.events:before, &.events-after:after {
+        content: "\e91b";
+    }
+
+    &.implement:before, &.implement-after:after {
+        content: "\e91c";
+    }
+
+    &.library:before, &.library-after:after {
+        content: "\e91d";
+    }
+
+    &.medicare:before, &.medicare-after:after {
+        content: "\e91e";
+    }
+
+    &.new-content:before, &.new-content-after:after {
+        content: "\e91f";
+    }
+
+    &.practice-finances:before, &.practice-finances-after:after {
+        content: "\e920";
+    }
+
+    &.quiz:before, &.quiz-after:after {
+        content: "\e921";
+    }
+
+    &.recommend:before, &.recommend-after:after {
+        content: "\e922";
+    }
+
+    &.report:before, &.report-after:after {
+        content: "\e923";
+    }
+
+    &.sustain:before, &.sustain-after:after {
+        content: "\e924";
+    }
+
+    &.train:before, &.train-after:after {
+        content: "\e925";
+    }
+
+    &.webinar:before, &.webinar-after:after {
+        content: "\e926";
+    }
+
+    &.calendar:before, &.calendar-after:after {
+        content: "\e92c";
+    }
+
+    &.exclaimation:before, &.exclaimation-after:after {
+        content: "\e92d";
+    }
+
+    &.news:before, &.news-after:after {
+        content: "\e92e";
+    }
+
+    &.blog:before, &.blog-after:after {
+        content: "\e928";
+    }
+
+    &.basics:before, &.basics-after:after {
+        content: "\e929";
+    }
+
+    &.certificates:before, &.certificates-after:after {
+        content: "\e927";
+    }
+
+    &.assessment:before, &.assessment-after:after {
+        content: "\e92a";
+    }
+
+    &.business-essentials:before, &.business-essentials-after:after {
+        content: "\e92b";
+    }
+
+    &.running-man:before, &.running-man-after:after {
+        content: "\e931";
+    }
+
+    &.checkbox {
+
+        display: inline-block;
+        position: relative;
+        width: 1em;
+
+        &:before {
+            content: '';
+            border-radius: 50%;
+            height: 1em;
+            width: 1em;
+            background-color: get-color( primary );
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        // .far.fa-check
+        &:after {
+            font-weight: $global-weight-bold;
+            content: "\e909";
+            color: $white;
+            position: relative;
+            top: auto;
+            right: 0;
+            bottom: .175em;
+            left: .3em;
+            font-size: .625em;
+        }
+
+    }
+
+    // This is less flexible. The checkbox is transparent. It is necessary for things like Bulleted Lists though.
+    &.checkbox-with-circle:before, &.checkbox-with-circle-after:after {
+        content: "\e917";
+    }
+
+    &.arrow-right-with-circle:before, &.arrow-right-with-circle-after:after {
+        content: "\e935";
+    }
+
+    &.bullhorn {
+
+        display: inline-block;
+        position: relative;
+        width: 1em;
+
+        &:before {
+            content: '';
+            border-radius: 50%;
+            height: 1em;
+            width: 1em;
+            background-color: $alert-color;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
+
+        // .far.fa-bullhorn
+        &:after {
+            content: "\e915";
+            color: $white;
+            position: relative;
+            top: auto;
+            right: 0;
+            bottom: .25em;
+            left: .5em;
+            font-size: .5em;
+        }
+
+    }
+
+}
+
+.fas {
+
+    &.fa-clipboard-list:before, &.fa-clipboard-list-after:after {
+        content: "\e906";
+    }
+
+    &.fa-file:before, &.fa-file-after:after {
+        content: "\e900";
+    }
+
+    &.fa-search:before, &.fa-search-after:after {
+        content: "\e932";
+    }
+
+    &.fa-shopping-cart:before, &.fa-shopping-cart-after:after {
+        content: "\e933";
+    }
+
+    &.fa-user:before, &.fa-user-after:after {
+        content: "\e934";
+    }
+
+    &.fa-hands-helping:before, &.fa-hands-helping-after:after {
+        content: "\e938";
+    }
+
+    &.fa-running:before, &.fa-running-after:after {
+        content: "\e93a";
+    }
+
+    &.fa-pencil:before, &.fa-pencil-after:after {
+        content: "\e939";
+    }
+
+    &.fa-sort:before, &.fa-sort-after:after {
+        content: "\e93b";
+    }
+
+    &.fa-arrow-left:before, &.fa-arrow-left-after:after {
+        content: "\e93c";
+    }
+
+    &.fa-lock:before, &.fa-lock-after:after {
+        content: "\e93e";
+    }
+
+}
+
+.far {
+
+    &.fa-angle-up:before, &.fa-angle-up-after:after {
+        content: "\e901";
+    }
+    &.fa-angle-right:before, &.fa-angle-right-after:after {
+        content: "\e908";
+    }
+    &.fa-angle-down:before, &.fa-angle-down-after:after {
+        content: "\e913";
+    }
+    &.fa-angle-left:before, &.fa-angle-left-after:after {
+        content: "\e907";
+    }
+
+    &.fa-bars:before, &.fa-bars-after:after {
+        content: "\e902";
+    }
+
+    &.fa-check:before, &.fa-check-after:after {
+        content: "\e909";
+    }
+
+    &.fa-bullhorn:before, &.fa-bullhorn-after:after {
+        content: "\e915";
+    }
+
+    &.fa-plus:before, &.fa-plus-after:after {
+        content: "\e92f";
+    }
+
+    &.fa-times:before, &.fa-times-after:after {
+        content: "\e930";
+    }
+
+    &.fa-file-alt:before, &.fa-file-alt-after:after {
+        content: "\e936";
+    }
+
+    &.fa-play-circle:before, &.fa-play-circle-after:after {
+        content: "\e937";
+    }
+
+    &.fa-running:before, &.fa-running-after:after {
+        content: "\e93d";
+    }
+
+}
+
+.fal {
+
+    &.fa-angle-up:before, &.fa-angle-up-after:after {
+        content: "\e914";
+    }
+    &.fa-angle-right:before, &.fa-angle-right-after:after {
+        content: "\e903";
+    }
+    &.fa-angle-down:before, &.fa-angle-down-after:after {
+        content: "\e90a";
+    }
+    &.fa-angle-left:before, &.fa-angle-left-after:after {
+        content: "\e90b";
+    }
+    &.fa-calendar-alt:before, &.fa-calendar-alt-after:after {
+        content: "\e90c";
+    }
+    &.fa-calendar:before, &.fa-calendar-after:after {
+        content: "\e90d";
+    }
+
+    &.fa-running:before, &.fa-running-after:after {
+        content: "\e931";
+    }
+
+}
+
+.fab {
+
+    &.fa-facebook-f:before, &.fa-facebook-f-after:after {
+        content: "\e904";
+    }
+
+    &.fa-linkedin-in:before, &.fa-linkedin-in-after:after {
+        content: "\e905";
+    }
+
+}
+
+// Based on Font Awesome's implementation, but without needing you to define the Stack CSS Classes
+// If more complex icons are needed, they will need to be handled on a case-by-case basis
+.kmcu-icon-stack, .fa-stack {
+
+    display: inline-block;
+	height: 2em;
+	line-height: 2em;
+	position: relative;
+	vertical-align: middle;
+    width: 2.5em;
+    
+    & > * {
+
+        left: 0;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+
+        &:first-child {
+            font-size: 2em;
+        }
+
+        &:nth-child( 1n + 2 ) {
+
+            line-height: inherit;
+            color: $white;
+
+            &.kmcu-icon {
+                font-size: 2em;
+            }
+
+        }
+
+    }
+
+}

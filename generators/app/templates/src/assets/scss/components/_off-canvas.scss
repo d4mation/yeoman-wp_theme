@@ -1,0 +1,63 @@
+.off-canvas {
+
+    ul > li.menu-item {
+    
+        &.button {
+    
+            background-color: transparent;
+            padding: 0;
+            margin: 0;
+            color: inherit;
+            text-align: left;
+
+            $colors: map-remove( $foundation-palette, white );
+    
+            @each $name, $color in $colors {
+    
+                &.#{$name} {
+        
+                    a {
+        
+                        @include button( false, $color, scale-color( $color, $lightness: -15% ), 'auto' );
+        
+                    }
+        
+                }
+    
+            }
+    
+            a {
+                padding: $global-menu-padding !important;
+                $padding: nth( str-split( inspect( $global-menu-padding ), ' ' ), 2 );
+                margin-left: to-number( $padding ) / 2 !important;
+            }
+    
+        }
+    
+        & > a {
+            font-weight: $global-weight-bold;
+        }
+        
+        a {
+    
+            .kmcu-icon-stack {
+    
+                height: 2em;
+                width: 2em;
+                line-height: 2em;
+        
+                .icon-background {
+                    background-color: $primary-color;
+                    width: 2em;
+                    height: 2em;
+                    border-radius: 50%;
+                    font-size: 1em;
+                }
+
+            }
+    
+        }
+    
+    }
+
+}

@@ -1,0 +1,11 @@
+.woocommerce {
+    
+    table.shop_table {
+
+        border: none;
+
+        @include table;
+
+    }
+
+}
